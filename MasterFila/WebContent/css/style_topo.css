@@ -1,0 +1,218 @@
+@CHARSET "ISO-8859-1";
+
+.azul_padrão_bg{
+	background-color:  
+}
+
+.bg_image_azul_padão{
+	background-image: url("img/bg_busca.png");
+}
+
+.bg_image_azul_padão:hover{
+	background-image: url("img/bg_busc_hover.png");
+}
+
+*{
+	font-family: Arial;
+}
+
+.limite{
+	position: relative;
+	margin: auto;
+	width: 1000px;
+}
+
+.clr{
+	clear: both;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	background-image: url("img/bg_pagina.png");
+	background-position: center;
+}
+
+.form_cidade{
+	position: relative;
+	width: 250px;
+	font-size: 20px;
+	font-size: 12px;
+}
+
+.form_cidade input[type=submit]{
+	position: relative;
+	float: right;
+	padding: 6px;
+	background-color: #0689C4;
+	color: white;
+	margin-top: 6px;
+	border: solid 1px white;
+	cursor: pointer;
+	margin-right: 8px;
+}
+
+.form_cidade input[type=submit]:hover{
+	text-decoration: underline;
+}
+
+.form_cidade label{
+	position: relative;
+	float: left;
+	width: 240px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.form_cidade select{
+	position: relative;
+	float: left;
+	width: 240px;
+	padding: 5px;
+}
+
+.left_escolha_cidade{
+	position: relative;
+	float: left;
+}
+
+.right_escolha_cidade{
+	position: relative;
+	float: right;
+}
+
+.right_escolha_cidade img{
+	position: relative;
+	float: right;
+	margin-right: 15px;
+	margin-top: 20px;
+}
+
+.content_cidade_selecionada{
+	position: relative;
+	float: right;
+	text-align: right;
+	margin-top: 60px;
+	z-index: 10;
+}
+
+.content_cidade_selecionada h6{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+.content_cidade_selecionada h4{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+.content_cidade_selecionada a{
+	font-size: 10px;
+	text-decoration: none;
+	cursor: pointer;
+	color: black;
+	font-weight: bold;
+}
+
+.content_cidade_selecionada a:hover{
+	color: #006796;
+}
+
+header{
+	position: relative;
+	border-top: solid 10px #056896;
+	background-image:url("img/bg_topo.png ");
+	height: 130px;
+	background-color: gray;
+}
+
+.left_topo{
+	position: relative;
+	float: left;
+}
+
+.left_topo img{
+	margin-top: 15px;
+}
+
+.form_login{
+	position: relative;
+	width: 370px;
+	font-size: 14px;
+	margin-top: 1px;
+}
+
+.form_login label{
+	position: relative;
+	float:left;
+	width: 179px;
+}
+
+.form_login input[type=text], .form_login input[type=password]{
+	position: relative;
+	float:left;
+	width: 160px;
+	margin-right: 7px;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+.form_login input[type=submit]{
+	position: relative;
+	float:right;
+	padding: 7px;
+	cursor: pointer;
+	margin-right: 15px;
+	background-image: url("img/bg_busca.png");
+	border: none;
+	margin-top: 5px;
+	color: white;
+}
+
+.form_login input[type=submit]:hover{
+	background-image: url("img/bg_busc_hover.png");	
+}
+
+.form_login a{
+	position: relative;
+	float:left;
+	margin-top: 10px;
+	margin-left:2px;
+	color: black;
+	text-decoration: none;
+	text-shadow: -3px 3px 3px #CCCCCC;
+}
+
+.form_login a:hover{
+	color: #0681B9;
+	text-decoration: underline;
+}
+
+.right_topo{
+	position: relative;
+	float: right;
+}
+
+.right_topo h2{
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	margin-top: 10px;
+	float: right;
+	margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
