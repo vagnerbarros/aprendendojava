@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost/seguradora</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/masterfila</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password"></property>
     
@@ -20,11 +20,10 @@
 
 	<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
     
-    <mapping class="seguradora.entidade.Cliente"/>
-    <mapping class="seguradora.entidade.Funcionario"/>
-    <mapping class="seguradora.entidade.Automovel"/>
-    <mapping class="seguradora.entidade.Prejuizo"/>
-    <mapping class="seguradora.entidade.FotoAutomovel"/>
+    <mapping class="masterfila.entidade.Empresa"/>
+    <mapping class="masterfila.entidade.Ficha"/>
+    <mapping class="masterfila.entidade.Funcionario"/>
+    <mapping class="masterfila.entidade.Usuario"/>
     
   </session-factory>
 </hibernate-configuration>
