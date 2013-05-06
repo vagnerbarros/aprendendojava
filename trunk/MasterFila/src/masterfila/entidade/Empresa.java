@@ -15,6 +15,9 @@ public class Empresa {
 	@Column(name = "nome", length = 200, nullable = false)
 	private String nome;
 	
+	@Column(name = "categoria", length = 100, nullable = false)
+	private String categoria;
+	
 	@Column(name = "status", length = 10, nullable = false)
 	private String status;
 	
@@ -30,6 +33,12 @@ public class Empresa {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	public String getStatus() {
 		return status;
