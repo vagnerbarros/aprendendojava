@@ -34,4 +34,32 @@ public class RepositorioFuncionario {
 		del.setStatus(Constants.INATIVO);
 		dao.atualizarObjeto(del);
 	}
+	
+	public Funcionario buscarLoginSenha(String login, String senha){
+		List<Funcionario> lista = (List<Funcionario>)dao.criarQuery("FROM funcionario where login LIKE '"+ login +"' AND senha LIKE '"+ senha +"'  AND status <> '" + Constants.INATIVO + "'");
+		if(!lista.isEmpty()){
+			return lista.get(0);
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public List<Funcionario> buscarNome(String nome){
+		return (List<Funcionario>) dao.buscarPorLikeIgnoreCase("nome", nome, Funcionario.class);
+	}
+	
+	public List<Funcionario> buscarCpf(String cpf){
+		return (List<Funcionario>) dao.buscarPorLikeIgnoreCase("cpf", cpf, Funcionario.class);
+	}
+	
+	public boolean existeLogin(String login){
+		Funcionario retorno = (Funcionario) dao.buscarPorChaveUnicaString(Funcionario.class, login, "login");
+		if(retorno != null){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
