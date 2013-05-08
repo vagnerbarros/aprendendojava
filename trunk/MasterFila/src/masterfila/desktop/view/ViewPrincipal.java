@@ -1,0 +1,224 @@
+package masterfila.desktop.view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
+import java.awt.Toolkit;
+import javax.swing.JInternalFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import javax.swing.JToolBar;
+
+public class ViewPrincipal extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private JImagePanel imageBg;
+	private JMenuItem mIncluirFuncionario;
+	private JMenuItem mListagemFuncionario;
+	private JMenuItem mListarAtendimento;
+	private JMenuItem mIncluirTipoAtendimento;
+	private JMenuItem mListarBox;
+	private JMenuItem mIncluirBox;
+	private JMenuItem mntmRealizarAtendimento;
+	private JMenuItem mntmSair;
+	private JMenuItem mntmMudarUsurio;
+	
+	public ViewPrincipal() throws IOException {
+		setTitle("Master Fila - Sistema Inteligente de Gerenciamento de Filas de Atendimento");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/icon_sistemaHQ.png")));
+		initComponents();
+	}
+	
+	private static BufferedImage loadImage(URL url) throws IOException {
+		return ImageIO.read(url);
+	}	
+	
+	private void initComponents() throws IOException{
+		
+		imageBg = new JImagePanel(loadImage(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/bg.png")));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(6, 129, 185));
+		
+		JLabel lblDesenvolvidoPorLeafsoftware = new JLabel("Desenvolvido por LeafSoftware \u00A9 2013 - Todos os direitos reservados");
+		lblDesenvolvidoPorLeafsoftware.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDesenvolvidoPorLeafsoftware.setForeground(Color.WHITE);
+		panel.add(lblDesenvolvidoPorLeafsoftware);
+		
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(imageBg, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
+					.addGap(0))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(imageBg, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+		);
+		imageBg.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/logoHQ.png")));
+		imageBg.add(lblNewLabel);
+		getContentPane().setLayout(groupLayout);
+		
+		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		setBounds((screenSize.width-700)/2, (screenSize.height-550)/2, 700, 513);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnSistema = new JMenu("Sistema");
+		menuBar.add(mnSistema);
+		
+		mntmMudarUsurio = new JMenuItem("Mudar Usu\u00E1rio");
+		mntmMudarUsurio.addActionListener(this);
+		mnSistema.add(mntmMudarUsurio);
+		
+		JSeparator separator = new JSeparator();
+		mnSistema.add(separator);
+		
+		mntmSair = new JMenuItem("Sair");
+		mntmSair.addActionListener(this);
+		mnSistema.add(mntmSair);
+		
+		JSeparator separator_1 = new JSeparator();
+		mnSistema.add(separator_1);
+		
+		JMenu mnCadastro = new JMenu("Cadastro");
+		menuBar.add(mnCadastro);
+		
+		JMenu mnFuncionrios = new JMenu("Funcion\u00E1rios");
+		mnCadastro.add(mnFuncionrios);
+		
+		mIncluirFuncionario = new JMenuItem("Incluir");
+		mIncluirFuncionario.addActionListener(this);
+		mIncluirFuncionario.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/add.png")));
+		mnFuncionrios.add(mIncluirFuncionario);
+		
+		mListagemFuncionario = new JMenuItem("Listagem/Edi\u00E7\u00E3o");
+		mListagemFuncionario.addActionListener(this);
+		mListagemFuncionario.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/list.png")));
+		mnFuncionrios.add(mListagemFuncionario);
+		
+		JMenu mnTiposDeAtendimento = new JMenu("Tipos de Atendimento");
+		mnCadastro.add(mnTiposDeAtendimento);
+		
+		mIncluirTipoAtendimento = new JMenuItem("Incluir");
+		mIncluirTipoAtendimento.addActionListener(this);
+		mIncluirTipoAtendimento.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/add.png")));
+		mnTiposDeAtendimento.add(mIncluirTipoAtendimento);
+		
+		mListarAtendimento = new JMenuItem("Listagem        ");
+		mListarAtendimento.addActionListener(this);
+		mListarAtendimento.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/list.png")));
+		mnTiposDeAtendimento.add(mListarAtendimento);
+		
+		JMenu mnBoxDeAtendimento = new JMenu("Box de Atendimento");
+		mnBoxDeAtendimento.setIcon(null);
+		mnCadastro.add(mnBoxDeAtendimento);
+		
+		mIncluirBox = new JMenuItem("Incluir");
+		mIncluirBox.addActionListener(this);
+		mIncluirBox.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/add.png")));
+		mnBoxDeAtendimento.add(mIncluirBox);
+		
+		mListarBox = new JMenuItem("Listagem        ");
+		mListarBox.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/list.png")));
+		mnBoxDeAtendimento.add(mListarBox);
+		mListarBox.addActionListener(this);
+		
+		JMenu mnAtendimento = new JMenu("Atendimento");
+		menuBar.add(mnAtendimento);
+		
+		mntmRealizarAtendimento = new JMenuItem("Realizar Atendimento");
+		mntmRealizarAtendimento.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/icon_atendimento.png")));
+		mntmRealizarAtendimento.addActionListener(this);
+		mnAtendimento.add(mntmRealizarAtendimento);
+		
+		setExtendedState(MAXIMIZED_BOTH);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JComponent elemento = (JComponent) e.getSource();
+		if(elemento.equals(mntmRealizarAtendimento)){
+			DialogRealizarAtendimento d = new DialogRealizarAtendimento();
+			d.setVisible(true);
+		}
+		if(elemento.equals(mIncluirBox)){
+			DialogIncluirBox d = new DialogIncluirBox();
+			d.setVisible(true);
+		}
+		if(elemento.equals(mListarBox)){
+			DialogListagemBox d = new DialogListagemBox();
+			d.setVisible(true);
+		}
+		if(elemento.equals(mIncluirTipoAtendimento)){
+			DialogIncluirTipoDeAtendimento d = new DialogIncluirTipoDeAtendimento();
+			d.setVisible(true);
+		}
+		if(elemento.equals(mListarAtendimento)){
+			DialogListagemTiposAtendimento d = new DialogListagemTiposAtendimento();
+			d.setVisible(true);
+		}
+		if(elemento.equals(mIncluirFuncionario)){
+			DialogCadastroFuncionario d = new DialogCadastroFuncionario();
+			d.setVisible(true);
+			d.setTabPrincipal(0);
+		}
+		if(elemento.equals(mListagemFuncionario)){
+			DialogCadastroFuncionario d = new DialogCadastroFuncionario();
+			d.setVisible(true);
+			d.setTabPrincipal(1);
+		}
+		if(elemento.equals(mntmSair)){
+			System.exit(0);
+		}
+		if(elemento.equals(mntmMudarUsurio)){
+			try {
+				DialogLogin d = new DialogLogin();
+				d.setVisible(true);
+			} catch (Exception e2) {
+				JOptionPane.showMessageDialog(null, e2.getMessage());
+			} finally{
+				this.dispose();
+			}
+		}
+	}
+}
