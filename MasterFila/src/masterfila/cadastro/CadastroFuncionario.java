@@ -3,9 +3,7 @@ package masterfila.cadastro;
 import java.util.List;
 
 import masterfila.entidade.Funcionario;
-import masterfila.entidade.Usuario;
 import masterfila.repositorio.RepositorioFuncionario;
-import masterfila.util.Criptografia;
 
 public class CadastroFuncionario {
 

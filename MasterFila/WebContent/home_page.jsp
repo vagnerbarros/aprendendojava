@@ -1,3 +1,5 @@
+<%@page import="masterfila.dominio.Categoria"%>
+
 <jsp:include page="topo.jsp" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,36 +36,20 @@
 		<div class="limite_lista_categorias">
 
 			<h4>Categorias</h4>
+			
+			<%
+			String [] categorias = Categoria.getCategorias();
+			for(String categoria : categorias){
+			%>
 
 			<ul class="lista_categorias primeira_lista">
 				<li><a> <img alt=""
 						src="css/img/icons/icon_consultorios.png" height="25" />
-						Consultórios Médicos
-				</a></li>
-				<li><a> <img alt="" src="css/img/icons/icon_cartorios.png"
-						height="25" /> Cartórios
+						<%=categoria %>
 				</a></li>
 			</ul>
-
-			<ul class="lista_categorias">
-				<li><a> <img alt=""
-						src="css/img/icons/icon_reparticoes.png" height="25" />
-						Repartiçoes Públicas
-				</a></li>
-				<li><a> <img alt=""
-						src="css/img/icons/icon_prefeituras.png" height="25" /> Prefeitura
-						e setores vinculados
-				</a></li>
-			</ul>
-
-			<ul class="lista_categorias">
-				<li><a> <img alt="" src="css/img/icons/icon_bancos.png"
-						height="25" /> Agências Bancárias
-				</a></li>
-				<li><a> <img alt="" src="css/img/icons/icon_outros.png"
-						height="25" /> Outros
-				</a></li>
-			</ul>
+			
+			<%} %>
 
 			<div class="clr"></div>
 

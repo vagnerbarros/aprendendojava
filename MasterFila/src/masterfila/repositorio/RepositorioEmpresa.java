@@ -4,7 +4,6 @@ import java.util.List;
 
 import masterfila.dao.Dao;
 import masterfila.entidade.Empresa;
-import masterfila.entidade.Ficha;
 import masterfila.util.Constants;
 
 public class RepositorioEmpresa {
