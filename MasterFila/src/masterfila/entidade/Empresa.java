@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "empresa")
-public class Empresa {
+public class Empresa implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -45,5 +45,10 @@ public class Empresa {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	@Override
+	public Object[] getColunas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

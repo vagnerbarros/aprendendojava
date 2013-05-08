@@ -1,39 +1,61 @@
 package masterfila.desktop.view;
 
-import javax.swing.JDialog;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.List;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
-public class DialogCadastroFuncionario extends JDialog {
+import masterfila.dominio.Perfil;
+import masterfila.entidade.Funcionario;
+import masterfila.exception.ConfirmacaoSenhaException;
+import masterfila.exception.LoginExistenteException;
+import masterfila.fachada.Fachada;
+import masterfila.util.Sessao;
+import masterfila.util.Tabela;
+
+public class DialogCadastroFuncionario extends JDialog implements ActionListener, KeyListener, ChangeListener{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
-	private JButton btCancelar;
-	private JButton brIncluir;
-	private JTable table;
-	private JTextField textField;
-	private JTextField txtPerfil;
+	private JButton btnCancelar;
+	private JButton btnIncluir;
+	private JButton btnEditar;
+	private JButton btnRemover;
+	private Tabela<Funcionario> tabela;
+	private JComboBox<String> comboPerfil;
+	private JComboBox<String> comboFiltro;
+	private JTextField txtFiltro;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
 	private JTextField txtConfirmarSenha;
 	private JTextField txtCpf;
 	private JTextField txtDataNascimento;
 	private JTabbedPane tabbedPanePrincipal;
+	private Funcionario atualizacao;
 	
 	public void setTabPrincipal(int index){
 		tabbedPanePrincipal.setSelectedIndex(index);
@@ -82,19 +104,21 @@ public class DialogCadastroFuncionario extends JDialog {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
-		brIncluir = new JButton("  Incluir");
-		brIncluir.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/ok.png")));
+		btnIncluir = new JButton("  Incluir");
+		btnIncluir.addActionListener(this);
+		btnIncluir.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/ok.png")));
 		
-		btCancelar = new JButton("  Cancelar");
-		btCancelar.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/cancel.png")));
+		btnCancelar = new JButton("  Cancelar");
+		btnCancelar.addActionListener(this);
+		btnCancelar.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/cancel.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap(138, Short.MAX_VALUE)
-					.addComponent(btCancelar, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(brIncluir, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnIncluir, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
@@ -102,8 +126,8 @@ public class DialogCadastroFuncionario extends JDialog {
 				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(brIncluir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btCancelar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnIncluir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -170,8 +194,8 @@ public class DialogCadastroFuncionario extends JDialog {
 		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Acesso ao Sistema", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_7.setBackground(Color.WHITE);
 		
-		txtPerfil = new JTextField();
-		txtPerfil.setColumns(10);
+		comboPerfil = new JComboBox<String>();
+		iniciarCombo();
 		
 		JLabel lblPerfil = new JLabel("Perfil:");
 		lblPerfil.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -199,7 +223,7 @@ public class DialogCadastroFuncionario extends JDialog {
 				.addGroup(gl_panel_7.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_7.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtPerfil, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboPerfil, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPerfil))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_7.createParallelGroup(Alignment.LEADING)
@@ -229,7 +253,7 @@ public class DialogCadastroFuncionario extends JDialog {
 						.addComponent(txtConfirmarSenha, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtPerfil, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboPerfil, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(62, Short.MAX_VALUE))
 		);
 		panel_7.setLayout(gl_panel_7);
@@ -260,6 +284,7 @@ public class DialogCadastroFuncionario extends JDialog {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
 		tabbedPanePrincipal.addTab("Listagem", null, panel_3, null);
+		tabbedPanePrincipal.addChangeListener(this);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.WHITE);
@@ -268,17 +293,19 @@ public class DialogCadastroFuncionario extends JDialog {
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
-		JButton btnEditarSelecionado = new JButton("  Editar Selecionado");
-		btnEditarSelecionado.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/edit.png")));
+		btnEditar = new JButton("  Editar Selecionado");
+		btnEditar.addActionListener(this);
+		btnEditar.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/edit.png")));
 		
-		JButton btnRemover = new JButton("  Remover");
+		btnRemover = new JButton("  Remover");
+		btnRemover.addActionListener(this);
 		btnRemover.setIcon(new ImageIcon(DialogCadastroFuncionario.class.getResource("/masterfila/desktop/view/img/cancel.png")));
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_5.createSequentialGroup()
 					.addContainerGap(474, Short.MAX_VALUE)
-					.addComponent(btnEditarSelecionado)
+					.addComponent(btnEditar)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnRemover, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -289,7 +316,7 @@ public class DialogCadastroFuncionario extends JDialog {
 					.addContainerGap(14, Short.MAX_VALUE)
 					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnRemover, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnEditarSelecionado, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_5.setLayout(gl_panel_5);
@@ -318,18 +345,21 @@ public class DialogCadastroFuncionario extends JDialog {
 					.addContainerGap())
 		);
 		
-		JComboBox comboBox = new JComboBox();
+		comboFiltro = new JComboBox<String>();
+		comboFiltro.addItem("Nome");
+		comboFiltro.addItem("CPF");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtFiltro = new JTextField();
+		txtFiltro.addKeyListener(this);
+		txtFiltro.setColumns(10);
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_4.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
+					.addComponent(comboFiltro, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
+					.addComponent(txtFiltro, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(96, Short.MAX_VALUE))
 		);
 		gl_panel_4.setVerticalGroup(
@@ -337,21 +367,19 @@ public class DialogCadastroFuncionario extends JDialog {
 				.addGroup(gl_panel_4.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_4.createParallelGroup(Alignment.TRAILING)
-						.addComponent(comboBox, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-						.addComponent(textField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+						.addComponent(comboFiltro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+						.addComponent(txtFiltro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panel_4.setLayout(gl_panel_4);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		));
-		scrollPane.setViewportView(table);
+		tabela = new Tabela<Funcionario>(new String [] {"Nome", "CPF"});
+		tabela.getColumnModel().getColumn(0).setResizable(false);
+		tabela.getColumnModel().getColumn(0).setPreferredWidth(80);
+		tabela.getColumnModel().getColumn(1).setResizable(false);
+		tabela.getColumnModel().getColumn(1).setPreferredWidth(400);
+		tabela.montarTabela(Fachada.getInstance().cadastroFuncionario().listar());
+		scrollPane.setViewportView(tabela);
 		panel_3.setLayout(gl_panel_3);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -392,8 +420,195 @@ public class DialogCadastroFuncionario extends JDialog {
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
-		
-		
-		
 	}
+	
+	private void iniciarCombo(){
+		String [] perfis = Perfil.getPerfilFuncionario();
+		for(String perfil : perfis){
+			comboPerfil.addItem(perfil);
+		}
+	}
+	
+	private void montarTabela(){
+
+		Fachada fachada = Fachada.getInstance();
+		String filtro = txtFiltro.getText();
+		List<Funcionario> funcionarios = null;
+
+		if(!filtro.equals("")){
+			int combo = comboFiltro.getSelectedIndex();
+			//busca por nome
+			if(combo == 0){
+				funcionarios = fachada.cadastroFuncionario().buscarNome(filtro);
+			}
+			//busca por cpf
+			else if(combo == 1){
+				funcionarios = fachada.cadastroFuncionario().buscarCpf(filtro);
+			}
+		}
+		else{
+			funcionarios = fachada.cadastroFuncionario().listar();
+		}
+
+		tabela.montarTabela(funcionarios);
+	}
+
+	
+	private void cadastrar(){
+		
+		String nome = txtNome.getText();
+		String cpf = txtCpf.getText();
+		String dataNascimento = txtDataNascimento.getText();
+		String perfil = (String) comboPerfil.getSelectedItem();
+		String login = txtLogin.getText();
+		String senha = txtSenha.getText();
+		String reSenha = txtConfirmarSenha.getText();
+		
+		Fachada fachada = Fachada.getInstance();
+		try {
+			fachada.cadastroFuncionario().verificarSenhaConfirmacao(senha, reSenha);
+
+			Funcionario funcionario = new Funcionario();
+			funcionario.setNome(nome);
+			funcionario.setCpf(cpf);
+			funcionario.setDataNascimento(dataNascimento);
+			funcionario.setPerfil(perfil);
+			funcionario.setLogin(login);
+			funcionario.setSenha(senha);
+			funcionario.setEmpresa(Sessao.getEmpresa());
+			
+			fachada.cadastroFuncionario().cadastrar(funcionario);
+			JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso.");
+			limparCampos();
+		} catch (ConfirmacaoSenhaException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		} catch (LoginExistenteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
+	}
+	
+	private void limparCampos(){
+		
+		txtNome.setText("");
+		txtCpf.setText("");
+		txtDataNascimento.setText("");
+		comboPerfil.setSelectedIndex(0);
+		txtLogin.setText("");
+		txtSenha.setText("");
+		txtConfirmarSenha.setText("");
+	}
+	
+	private void editar(){
+		
+		int linha = tabela.getSelectedRow();
+
+		if(linha != -1){
+			atualizacao = (Funcionario) tabela.getModel().getValueAt(linha, 0);
+			
+			//seleciona a aba cadastro
+			tabbedPanePrincipal.setSelectedIndex(0);
+			
+			txtNome.setText(atualizacao.getNome());
+			txtCpf.setText(atualizacao.getCpf());
+			txtDataNascimento.setText(atualizacao.getDataNascimento());
+			comboPerfil.setSelectedItem(atualizacao.getPerfil());
+			txtLogin.setText(atualizacao.getLogin());
+			txtSenha.setText(atualizacao.getSenha());
+			txtConfirmarSenha.setText(atualizacao.getSenha());
+		}
+	}
+	
+	private void atualizar(){
+		
+		String nome = txtNome.getText();
+		String cpf = txtCpf.getText();
+		String dataNascimento = txtDataNascimento.getText();
+		String perfil = (String) comboPerfil.getSelectedItem();
+		String senha = txtSenha.getText();
+		String reSenha = txtConfirmarSenha.getText();
+		
+		Fachada fachada = Fachada.getInstance();
+		try {
+			fachada.cadastroFuncionario().verificarSenhaConfirmacao(senha, reSenha);
+
+			atualizacao.setNome(nome);
+			atualizacao.setCpf(cpf);
+			atualizacao.setDataNascimento(dataNascimento);
+			atualizacao.setPerfil(perfil);
+			atualizacao.setSenha(senha);
+			
+			fachada.cadastroFuncionario().atualizar(atualizacao);
+			JOptionPane.showMessageDialog(this, "Funcionário atualizado com sucesso.");
+			limparCampos();
+			btnIncluir.setText("  Incluir");
+			txtLogin.setEditable(true);
+		} catch (ConfirmacaoSenhaException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
+	}
+	
+	private void remover(){
+		
+		int linha = tabela.getSelectedRow();
+
+		if(linha != -1){
+			Object[] options = { "OK", "Cancelar" };
+			int resposta = JOptionPane.showOptionDialog(null, "Tem certeza que deseja remover?", "Alerta !!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+			if(resposta == 0){
+				Funcionario f = (Funcionario) tabela.getModel().getValueAt(linha, 0);
+				Fachada fachada = Fachada.getInstance();
+				fachada.cadastroFuncionario().remover(f);
+				montarTabela();
+			}
+		}
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		JComponent elemento = (JComponent) e.getSource();
+		if(elemento.equals(btnIncluir)){
+			String tipo = btnIncluir.getText();
+			if(tipo.equals("  Incluir")){
+				cadastrar();
+			}
+			else{
+				atualizar();
+			}
+		}
+		else if(elemento.equals(btnCancelar)){
+			this.dispose();
+		}
+		else if(elemento.equals(btnEditar)){
+			btnIncluir.setText("  Atualizar");
+			txtLogin.setEditable(false);
+			editar();
+		}
+		else if(elemento.equals(btnRemover)){
+			remover();
+		}
+	}
+
+	public void keyReleased(KeyEvent e) {
+		
+		JComponent elemento = (JComponent) e.getSource();
+		if(elemento.equals(txtFiltro)){
+			montarTabela();
+		}
+	}
+	
+	public void stateChanged(ChangeEvent evt) {
+		JComponent componente = (JComponent) evt.getSource();
+		if(componente.equals(tabbedPanePrincipal)){
+			if(tabbedPanePrincipal.getSelectedIndex() == 1){
+				montarTabela();
+				btnIncluir.setText("  Incluir");
+				txtLogin.setEditable(true);
+			}
+			else if(tabbedPanePrincipal.getSelectedIndex() == 0){
+				limparCampos();
+			}
+		}
+	}
+	
+	public void keyTyped(KeyEvent e) {}
+	public void keyPressed(KeyEvent e) {}
 }

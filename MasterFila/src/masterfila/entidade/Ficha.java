@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity (name = "ficha")
-public class Ficha {
+public class Ficha implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -68,5 +68,10 @@ public class Ficha {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	@Override
+	public Object[] getColunas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
