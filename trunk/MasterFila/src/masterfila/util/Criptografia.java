@@ -7,8 +7,6 @@ import java.util.Formatter;
 
 public class Criptografia {
 
-	
-	
 	public static String encryptPassword(String password)
 	{
 	    String sha1 = "";

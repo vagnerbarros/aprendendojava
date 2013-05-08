@@ -17,6 +17,7 @@ public class HibernateUtil {
 	private static SessionFactory sessionFactory;
 
 	static {
+		
 		Configuration configuration = new Configuration();
 		
 		configuration.addAnnotatedClass(Usuario.class);

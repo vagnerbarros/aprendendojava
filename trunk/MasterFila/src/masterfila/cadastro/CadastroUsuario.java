@@ -1,6 +1,7 @@
 package masterfila.cadastro;
 
 import java.util.List;
+
 import masterfila.entidade.Usuario;
 import masterfila.repositorio.RepositorioUsuario;
 import masterfila.util.Criptografia;

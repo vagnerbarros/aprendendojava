@@ -1,1 +1,2 @@
-<%@include file='home_page.jsp' %> 
+<%@include file='home_page.jsp' %>
+ 
