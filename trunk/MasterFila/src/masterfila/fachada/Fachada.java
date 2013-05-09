@@ -1,10 +1,10 @@
 package masterfila.fachada;
 
-import masterfila.cadastro.CadastroEmpresa;
+import masterfila.cadastro.CadastroEstabelecimento;
 import masterfila.cadastro.CadastroFicha;
 import masterfila.cadastro.CadastroFuncionario;
 import masterfila.cadastro.CadastroUsuario;
-import masterfila.repositorio.RepositorioEmpresa;
+import masterfila.repositorio.RepositorioEstabelecimento;
 import masterfila.repositorio.RepositorioFicha;
 import masterfila.repositorio.RepositorioFuncionario;
 import masterfila.repositorio.RepositorioUsuario;
@@ -15,7 +15,7 @@ public class Fachada {
 	private CadastroFuncionario cadFuncionario;
 	private CadastroUsuario cadUsuario;
 	private CadastroFicha cadFicha;
-	private CadastroEmpresa cadEmpresa;
+	private CadastroEstabelecimento cadEstabelecimento;
 	
 	private Fachada(){
 		inicializar();
@@ -32,8 +32,8 @@ public class Fachada {
 		RepositorioFicha repFicha = new RepositorioFicha();
 		cadFicha = new CadastroFicha(repFicha);
 		
-		RepositorioEmpresa repEmpresa = new RepositorioEmpresa();
-		cadEmpresa = new CadastroEmpresa(repEmpresa);
+		RepositorioEstabelecimento repEmpresa = new RepositorioEstabelecimento();
+		cadEstabelecimento = new CadastroEstabelecimento(repEmpresa);
 	}
 	
 	public static Fachada getInstance(){
@@ -56,7 +56,7 @@ public class Fachada {
 		return cadFicha;
 	}
 	
-	public CadastroEmpresa cadastroEmpresa(){
-		return cadEmpresa;
+	public CadastroEstabelecimento cadastroEmpresa(){
+		return cadEstabelecimento;
 	}
 }

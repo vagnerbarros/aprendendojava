@@ -6,11 +6,11 @@ import masterfila.dao.Dao;
 import masterfila.entidade.Estabelecimento;
 import masterfila.util.Constants;
 
-public class RepositorioEmpresa {
+public class RepositorioEstabelecimento {
 
 	private Dao dao;
 	
-	public RepositorioEmpresa(){
+	public RepositorioEstabelecimento(){
 		if(dao == null){
 			dao = Dao.getInstance();
 		}
