@@ -4,13 +4,13 @@ import java.util.List;
 
 import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Funcionario;
-import masterfila.repositorio.RepositorioEmpresa;
+import masterfila.repositorio.RepositorioEstabelecimento;
 
-public class CadastroEmpresa {
+public class CadastroEstabelecimento {
 
-	private RepositorioEmpresa rep;
+	private RepositorioEstabelecimento rep;
 	
-	public CadastroEmpresa(RepositorioEmpresa rep){
+	public CadastroEstabelecimento(RepositorioEstabelecimento rep){
 		this.rep = rep;
 	}
 	
