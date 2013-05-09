@@ -1,18 +1,18 @@
 package masterfila.util;
 
-import masterfila.entidade.Empresa;
+import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Funcionario;
 
 public abstract class Sessao {
 
-	private static Empresa empresa;
+	private static Estabelecimento empresa;
 	private static Funcionario funcionario;
 	
-	public static Empresa getEmpresa(){
+	public static Estabelecimento getEmpresa(){
 		return empresa;
 	}
 	
-	public static void setEmpresa(Empresa emp){
+	public static void setEmpresa(Estabelecimento emp){
 		empresa = emp;
 	}
 	

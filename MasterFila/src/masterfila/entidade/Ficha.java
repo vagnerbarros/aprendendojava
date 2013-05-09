@@ -15,12 +15,6 @@ public class Ficha implements Entidade{
 	@GeneratedValue
 	private Long id;
 	
-	@Column(name = "numero", length = 10, nullable = false)
-	private String numero;
-	
-	@Column(name = "tipo", length = 50, nullable = false)
-	private String tipo;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_atendente")
 	private Funcionario atendente;
@@ -28,6 +22,21 @@ public class Ficha implements Entidade{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cliente")
 	private Usuario cliente;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_tipo")
+	private TipoFicha tipo;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_guiche")
+	private Guiche guiche;
+	
+	@Column(name = "numero", length = 10, nullable = false)
+	private String numero;
+	
+	@Column(name = "data", length = 20, nullable = false)
+	private String data;
+	
 	
 	@Column(name = "status", length = 10, nullable = false)
 	private String status;
@@ -44,12 +53,6 @@ public class Ficha implements Entidade{
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 	public Funcionario getAtendente() {
 		return atendente;
@@ -69,9 +72,22 @@ public class Ficha implements Entidade{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
+	public Guiche getGuiche() {
+		return guiche;
+	}
+	public void setGuiche(Guiche guiche) {
+		this.guiche = guiche;
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public void setTipo(TipoFicha tipo) {
+		this.tipo = tipo;
+	}
 	public Object[] getColunas() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

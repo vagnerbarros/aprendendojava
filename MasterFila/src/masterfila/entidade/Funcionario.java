@@ -17,7 +17,7 @@ public class Funcionario implements Entidade{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_empresa")
-	private Empresa empresa;
+	private Estabelecimento estabelecimento;
 	
 	@Column(name = "nome", length = 200, nullable = false)
 	private String nome;
@@ -48,12 +48,12 @@ public class Funcionario implements Entidade{
 		this.id = id;
 	}
 
-	public Empresa getEmpresa() {
-		return empresa;
+	public Estabelecimento getEmpresa() {
+		return estabelecimento;
 	}
 
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
+	public void setEmpresa(Estabelecimento empresa) {
+		this.estabelecimento = empresa;
 	}
 
 	public String getNome() {

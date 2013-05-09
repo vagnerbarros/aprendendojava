@@ -2,7 +2,7 @@ package masterfila.cadastro;
 
 import java.util.List;
 
-import masterfila.entidade.Empresa;
+import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Funcionario;
 import masterfila.repositorio.RepositorioEmpresa;
 
@@ -14,19 +14,19 @@ public class CadastroEmpresa {
 		this.rep = rep;
 	}
 	
-	public void cadastrar(Empresa novo){
+	public void cadastrar(Estabelecimento novo){
 		rep.inserir(novo);
 	}
 	
-	public void atualizar(Empresa atual){
+	public void atualizar(Estabelecimento atual){
 		rep.atualizar(atual);
 	}
 	
-	public void remover(Empresa deletado){
+	public void remover(Estabelecimento deletado){
 		rep.remover(deletado);
 	}
 	
-	public List<Empresa> listar(){
+	public List<Estabelecimento> listar(){
 		return rep.listar();
 	}
 }

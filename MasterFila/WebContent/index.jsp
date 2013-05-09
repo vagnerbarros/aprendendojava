@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="masterfila.util.Constants"%>
 <%@ include file="topo_escolha_cidade.jsp"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,13 +46,17 @@
 			<label>Selecione o Estado:</label>
 			
 			<select name="estados">
-			    <option value="PE">Pernambuco</option>
+				<%
+				String [] estados = Constants.listaEstados;
+				for(String estado : estados){ %>
+			    <option value="<%=estado %>"><%=estado %></option>
+			    <% } %>
 			</select>
 			
 			<label>Selecione a Cidade:</label>
 			
 			<select name="cidades">
-			    <option value="Caruaru">Caruaru</option>
+				<option value="caruaru">Caruaru</option>
 			</select>
 			
 			<input type="submit" value="ACESSAR o MasterFila"/>

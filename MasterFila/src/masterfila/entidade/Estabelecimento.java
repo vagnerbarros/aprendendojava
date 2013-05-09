@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name = "empresa")
-public class Empresa implements Entidade{
+@Entity(name = "estabelecimento")
+public class Estabelecimento implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -17,6 +17,9 @@ public class Empresa implements Entidade{
 	
 	@Column(name = "categoria", length = 100, nullable = false)
 	private String categoria;
+	
+	@Column(name = "email", length = 100, nullable = false)
+	private String email;
 	
 	@Column(name = "status", length = 10, nullable = false)
 	private String status;
@@ -46,9 +49,14 @@ public class Empresa implements Entidade{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public Object[] getColunas() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -3,7 +3,7 @@ package masterfila.repositorio;
 import java.util.List;
 
 import masterfila.dao.Dao;
-import masterfila.entidade.Empresa;
+import masterfila.entidade.Estabelecimento;
 import masterfila.util.Constants;
 
 public class RepositorioEmpresa {
@@ -16,20 +16,20 @@ public class RepositorioEmpresa {
 		}
 	}
 	
-	public void inserir(Empresa novo){
+	public void inserir(Estabelecimento novo){
 		novo.setStatus(Constants.ATIVO);
 		dao.salvarObjeto(novo);
 	}
 	
-	public void atualizar(Empresa atual){
+	public void atualizar(Estabelecimento atual){
 		dao.atualizarObjeto(atual);
 	}
 	
-	public List<Empresa> listar(){
-		return (List<Empresa>) dao.criarQuery("FROM empresa WHERE status <> '" + Constants.INATIVO + "'");
+	public List<Estabelecimento> listar(){
+		return (List<Estabelecimento>) dao.criarQuery("FROM empresa WHERE status <> '" + Constants.INATIVO + "'");
 	}
 	
-	public void remover(Empresa del){
+	public void remover(Estabelecimento del){
 		del.setStatus(Constants.INATIVO);
 		dao.atualizarObjeto(del);
 	}

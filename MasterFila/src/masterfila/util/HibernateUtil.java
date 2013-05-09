@@ -1,8 +1,10 @@
 package masterfila.util;
 
-import masterfila.entidade.Empresa;
+import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Ficha;
 import masterfila.entidade.Funcionario;
+import masterfila.entidade.Guiche;
+import masterfila.entidade.TipoFicha;
 import masterfila.entidade.Usuario;
 
 import org.hibernate.Session;
@@ -23,7 +25,9 @@ public class HibernateUtil {
 		configuration.addAnnotatedClass(Usuario.class);
 		configuration.addAnnotatedClass(Ficha.class);
 		configuration.addAnnotatedClass(Funcionario.class);
-		configuration.addAnnotatedClass(Empresa.class);
+		configuration.addAnnotatedClass(Estabelecimento.class);
+		configuration.addAnnotatedClass(TipoFicha.class);
+		configuration.addAnnotatedClass(Guiche.class);
 		
 		configuration.configure();
 		ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder()
