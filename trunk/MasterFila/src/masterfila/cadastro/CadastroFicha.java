@@ -2,7 +2,7 @@ package masterfila.cadastro;
 
 import java.util.List;
 
-import masterfila.entidade.Empresa;
+import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Ficha;
 import masterfila.repositorio.RepositorioFicha;
 

@@ -20,10 +20,12 @@
 
 	<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
     
-    <mapping class="masterfila.entidade.Empresa"/>
+    <mapping class="masterfila.entidade.Estabelecimento"/>
     <mapping class="masterfila.entidade.Ficha"/>
     <mapping class="masterfila.entidade.Funcionario"/>
     <mapping class="masterfila.entidade.Usuario"/>
+    <mapping class="masterfila.entidade.Guiche"/>
+    <mapping class="masterfila.entidade.TipoFicha"/>
     
   </session-factory>
 </hibernate-configuration>
