@@ -1,26 +1,32 @@
 package masterfila.desktop.view;
 
-import javax.swing.JDialog;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.border.EtchedBorder;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EtchedBorder;
 
-public class DialogListagemTiposAtendimento extends JDialog {
+import masterfila.entidade.TipoFicha;
+import masterfila.fachada.Fachada;
+import masterfila.util.Tabela;
+
+public class DialogListagemTiposAtendimento extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	private JButton brRemover;
-	private JTable table;
+	private JButton btnRemover;
+	private Tabela<TipoFicha> tabela;
 	
 	public DialogListagemTiposAtendimento(){
 		setTitle("Tipos de Atendimentos - Listagem");
@@ -63,31 +69,28 @@ public class DialogListagemTiposAtendimento extends JDialog {
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		scrollPane.setViewportView(table);
+		tabela = new Tabela<TipoFicha>(new String [] {"Nome"});
+		tabela.getColumnModel().getColumn(0).setResizable(false);
+		tabela.getColumnModel().getColumn(0).setPreferredWidth(200);
+		tabela.montarTabela(Fachada.getInstance().cadastroTipoFicha().listar());
+		scrollPane.setViewportView(tabela);
 		
-		brRemover = new JButton("  Remover");
-		brRemover.setIcon(new ImageIcon(DialogListagemTiposAtendimento.class.getResource("/masterfila/desktop/view/img/cancel.png")));
+		btnRemover = new JButton("  Remover");
+		btnRemover.addActionListener(this);
+		btnRemover.setIcon(new ImageIcon(DialogListagemTiposAtendimento.class.getResource("/masterfila/desktop/view/img/cancel.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(471, Short.MAX_VALUE)
-					.addComponent(brRemover, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnRemover, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
-					.addComponent(brRemover, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnRemover, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -130,8 +133,26 @@ public class DialogListagemTiposAtendimento extends JDialog {
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
-		
-		
-		
+	}
+	
+	private void remover(){
+		int linha = tabela.getSelectedRow();
+		if(linha != -1){
+			Object[] options = { "OK", "Cancelar" };
+			int resposta = JOptionPane.showOptionDialog(null, "Tem certeza que deseja remover?", "Alerta !!", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+			if(resposta == 0){
+				TipoFicha tipoFicha = (TipoFicha) tabela.getModel().getValueAt(linha, 0);
+				Fachada fachada = Fachada.getInstance();
+				fachada.cadastroTipoFicha().remover(tipoFicha);
+				tabela.montarTabela(fachada.cadastroTipoFicha().listar());
+			}
+		}
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		JComponent elemento = (JComponent) e.getSource();
+		if(elemento.equals(btnRemover)){
+			remover();
+		}
 	}
 }

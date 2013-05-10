@@ -1,24 +1,33 @@
 package masterfila.desktop.view;
 
-import javax.swing.JDialog;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 
-public class DialogIncluirBox extends JDialog {
+import masterfila.entidade.Guiche;
+import masterfila.exception.NumeroGuicheExisteException;
+import masterfila.fachada.Fachada;
+
+public class DialogIncluirBox extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNomeBox;
-	private JButton btCancelar;
-	private JButton brIncluir;
+	private JButton btnCancelar;
+	private JButton btnIncluir;
 	
 	public DialogIncluirBox(){
 		setTitle("Box de Atendimento - Incluir");
@@ -71,19 +80,21 @@ public class DialogIncluirBox extends JDialog {
 					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
 		);
 		
-		brIncluir = new JButton("  Incluir");
-		brIncluir.setIcon(new ImageIcon(DialogIncluirBox.class.getResource("/masterfila/desktop/view/img/ok.png")));
+		btnIncluir = new JButton("  Incluir");
+		btnIncluir.addActionListener(this);
+		btnIncluir.setIcon(new ImageIcon(DialogIncluirBox.class.getResource("/masterfila/desktop/view/img/ok.png")));
 		
-		btCancelar = new JButton("  Cancelar");
-		btCancelar.setIcon(new ImageIcon(DialogIncluirBox.class.getResource("/masterfila/desktop/view/img/cancel.png")));
+		btnCancelar = new JButton("  Cancelar");
+		btnCancelar.addActionListener(this);
+		btnCancelar.setIcon(new ImageIcon(DialogIncluirBox.class.getResource("/masterfila/desktop/view/img/cancel.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap(138, Short.MAX_VALUE)
-					.addComponent(btCancelar, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(brIncluir, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnIncluir, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
@@ -91,8 +102,8 @@ public class DialogIncluirBox extends JDialog {
 				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(brIncluir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btCancelar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnIncluir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -135,8 +146,36 @@ public class DialogIncluirBox extends JDialog {
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
+	}
+	
+	private void cadastrar(){
 		
+		String box = txtNomeBox.getText();
 		
+		Guiche guiche = new Guiche();
+		guiche.setNumero(box);
 		
+		Fachada fachada = Fachada.getInstance();
+		try {
+			fachada.cadastroGuiche().cadastrar(guiche);
+			limparCampos();
+			JOptionPane.showMessageDialog(this, "Box cadastrado com sucesso.");
+		} catch (NumeroGuicheExisteException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
+		}
+	}
+	
+	private void limparCampos(){
+		txtNomeBox.setText("");
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		JComponent elemento = (JComponent) e.getSource();
+		if(elemento.equals(btnIncluir)){
+			cadastrar();
+		}
+		else if(elemento.equals(btnCancelar)){
+			this.dispose();
+		}
 	}
 }

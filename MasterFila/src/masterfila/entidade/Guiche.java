@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity (name = "guiche")
-public class Guiche {
+public class Guiche implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -14,6 +14,9 @@ public class Guiche {
 	
 	@Column(name = "numero", length = 10, nullable = false)
 	private String numero;
+	
+	@Column(name = "situacao", length = 20, nullable = false)
+	private String situacao;
 	
 	@Column(name = "status", length = 10, nullable = false)
 	private String status;
@@ -34,11 +37,36 @@ public class Guiche {
 		this.numero = numero;
 	}
 
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Object[] getColunas() {
+		return new Object[] {this, situacao};
+	}
+	
+	public String toString(){
+		return numero;
+	}
+	
+	public boolean equals(Object o){
+		if(this.id == ((Guiche)o).getId()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
