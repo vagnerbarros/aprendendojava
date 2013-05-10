@@ -18,6 +18,10 @@ public class Fila {
 		fichas = new ArrayList<Ficha>();
 	}
 	
+	public void setFichas(List<Ficha> fichas){
+		this.fichas = fichas;
+	}
+	
 	public void adicionarFicha(Ficha ficha) throws FichaInvalidaException{
 		if(tipo.equals(ficha.getTipo())){
 			fichas.add(ficha);
@@ -29,7 +33,7 @@ public class Fila {
 	
 	public Ficha atenderProximo() throws FilaVaziaException{
 		Ficha retorno = null;
-		if(!fichas.isEmpty()){
+		if(fichas != null && !fichas.isEmpty()){
 			retorno = fichas.get(proximo);
 		}
 		if(retorno != null){

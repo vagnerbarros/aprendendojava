@@ -12,10 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 
+import masterfila.entidade.Ficha;
 import masterfila.entidade.Fila;
 import masterfila.entidade.Guiche;
 import masterfila.entidade.TipoFicha;
@@ -28,8 +30,9 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private JLabel lblTipoFicha;
 	private JLabel lblSenha;
 	private JLabel lblGuiche;
-	private JButton btRepetir;
-	private JButton btFinalizar;
+	private JButton btnRepetir;
+	private JButton btnFinalizar;
+	private JButton btnChamar;
 	private Guiche guiche;
 	private TipoFicha tipoFicha;
 	private Fila fila;
@@ -49,7 +52,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		setModal(true);
 		
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds((screenSize.width-400)/2, (screenSize.height-400)/2, 400, 346);
+		setBounds((screenSize.width-400)/2, (screenSize.height-400)/2, 411, 346);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -67,7 +70,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		JLabel lblTipoDeAtendimento = new JLabel("Tipo de Atendimento:");
 		lblTipoDeAtendimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		lblTipoFicha = new JLabel("");
+		lblTipoFicha = new JLabel(tipoFicha.getNome());
 		lblTipoFicha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		JLabel lbl_senha = new JLabel("Senha:");
@@ -111,29 +114,38 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		
-		btFinalizar = new JButton("  Finalizar");
-		btFinalizar.addActionListener(this);
-		btFinalizar.setIcon(new ImageIcon(DialogConfirmaçãoAtendimento.class.getResource("/masterfila/desktop/view/img/ok.png")));
+		btnFinalizar = new JButton("  Finalizar");
+		btnFinalizar.addActionListener(this);
+		btnFinalizar.setIcon(new ImageIcon(DialogConfirmaçãoAtendimento.class.getResource("/masterfila/desktop/view/img/cancel.png")));
 		
-		btRepetir = new JButton("  Chamar Novamente");
-		btRepetir.setIcon(new ImageIcon(DialogConfirmaçãoAtendimento.class.getResource("/masterfila/desktop/view/img/refresh.png")));
+		btnRepetir = new JButton("  Chamar Novamente");
+		btnRepetir.addActionListener(this);
+		btnRepetir.setIcon(new ImageIcon(DialogConfirmaçãoAtendimento.class.getResource("/masterfila/desktop/view/img/refresh.png")));
+		
+		btnChamar = new JButton("  Chamar");
+		btnChamar.addActionListener(this);
+		btnChamar.setIcon(new ImageIcon(DialogConfirmaçãoAtendimento.class.getResource("/masterfila/desktop/view/img/add.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-					.addGap(58)
-					.addComponent(btRepetir)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btFinalizar)
-					.addContainerGap(64, Short.MAX_VALUE))
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnFinalizar)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnRepetir, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnChamar, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btRepetir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btFinalizar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnRepetir, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnFinalizar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnChamar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -184,21 +196,29 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private void chamarProximo(){
 		
 		try {
-			String senha = fila.atenderProximo().getNumero();
+			Ficha ficha = fila.atenderProximo();
+			String senha = ficha.getNumero();
 			String tipo = tipoFicha.getNome();
+			lblSenha.setText(senha);
+			lblTipoFicha.setText(tipo);
 		} catch (FilaVaziaException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JComponent elemento = (JComponent) e.getSource();
-		if(elemento.equals(btFinalizar)){
+		if(elemento.equals(btnFinalizar)){
 			this.dispose();
 			DialogRealizarAtendimento d = new DialogRealizarAtendimento();
 			d.setVisible(true);
 		}
-		
+		else if(elemento.equals(btnChamar)){
+			chamarProximo();
+		}
+		else if(elemento.equals(btnRepetir)){
+			
+		}
 	}
 }

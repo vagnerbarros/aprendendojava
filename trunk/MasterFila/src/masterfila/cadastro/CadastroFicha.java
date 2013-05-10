@@ -1,10 +1,9 @@
 package masterfila.cadastro;
 
 import java.util.List;
-import java.util.Map;
 
 import masterfila.entidade.Ficha;
-import masterfila.entidade.Fila;
+import masterfila.entidade.TipoFicha;
 import masterfila.repositorio.RepositorioFicha;
 
 public class CadastroFicha {
@@ -29,5 +28,9 @@ public class CadastroFicha {
 	
 	public List<Ficha> listar(){
 		return rep.listar();
+	}
+	
+	public List<Ficha> listarTipo(TipoFicha tipo){
+		return rep.listarTipo(tipo);
 	}
 }
