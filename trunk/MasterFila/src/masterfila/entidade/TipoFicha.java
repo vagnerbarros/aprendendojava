@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "tipo_ficha")
-public class TipoFicha {
+public class TipoFicha implements Entidade{
 
 	@Id
 	@GeneratedValue
@@ -40,5 +40,23 @@ public class TipoFicha {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	@Override
+	public Object[] getColunas() {
+		return new Object [] {this};
+	}
+	
+	public String toString(){
+		return nome;
+	}
+	
+	public boolean equals(Object o){
+		if(this.id == ((TipoFicha)o).getId()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

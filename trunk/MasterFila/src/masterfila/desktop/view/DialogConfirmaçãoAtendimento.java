@@ -1,30 +1,45 @@
 package masterfila.desktop.view;
 
-import javax.swing.JComponent;
-import javax.swing.JDialog;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import masterfila.entidade.Fila;
+import masterfila.entidade.Guiche;
+import masterfila.entidade.TipoFicha;
+import masterfila.exception.FilaVaziaException;
+import masterfila.fachada.Fachada;
 
 public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
+	private JLabel lblTipoFicha;
+	private JLabel lblSenha;
+	private JLabel lblGuiche;
 	private JButton btRepetir;
 	private JButton btFinalizar;
+	private Guiche guiche;
+	private TipoFicha tipoFicha;
+	private Fila fila;
 	
-	public DialogConfirmaçãoAtendimento(){
+	public DialogConfirmaçãoAtendimento(Guiche guiche, TipoFicha tipoFicha){
 		setTitle("Atendimento");
+		this.guiche = guiche;
+		this.tipoFicha = tipoFicha;
+		Fachada fachada = Fachada.getInstance();
+		fila = fachada.cadastroFila().buscarFila(tipoFicha);
 		setResizable(false);
 		initComponents();
 	}
@@ -46,20 +61,20 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
-		JLabel label = new JLabel("09");
-		label.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblGuiche = new JLabel(guiche.getNumero());
+		lblGuiche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		JLabel lblTipoDeAtendimento = new JLabel("Tipo de Atendimento:");
 		lblTipoDeAtendimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JLabel lblPreferencial = new JLabel("Preferencial");
-		lblPreferencial.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTipoFicha = new JLabel("");
+		lblTipoFicha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JLabel lbl_senha = new JLabel("Senha:");
+		lbl_senha.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JLabel lblP = new JLabel("P3892");
-		lblP.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSenha = new JLabel("");
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -67,11 +82,11 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblP, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSenha, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPreferencial, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblSenha, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbl_senha, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTipoFicha, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNomeDoBox)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblGuiche, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTipoDeAtendimento, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))
 					.addGap(22))
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
@@ -83,15 +98,15 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 					.addGap(18)
 					.addComponent(lblNomeDoBox)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(label)
+					.addComponent(lblGuiche)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblTipoDeAtendimento, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblPreferencial, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblTipoFicha, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblSenha, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lbl_senha, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblP, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblSenha, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
@@ -164,6 +179,16 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		
 		
 		
+	}
+	
+	private void chamarProximo(){
+		
+		try {
+			String senha = fila.atenderProximo().getNumero();
+			String tipo = tipoFicha.getNome();
+		} catch (FilaVaziaException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

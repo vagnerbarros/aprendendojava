@@ -1,9 +1,10 @@
 package masterfila.cadastro;
 
 import java.util.List;
+import java.util.Map;
 
-import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Ficha;
+import masterfila.entidade.Fila;
 import masterfila.repositorio.RepositorioFicha;
 
 public class CadastroFicha {

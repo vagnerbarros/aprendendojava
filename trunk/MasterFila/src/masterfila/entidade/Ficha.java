@@ -87,6 +87,9 @@ public class Ficha implements Entidade{
 	public void setTipo(TipoFicha tipo) {
 		this.tipo = tipo;
 	}
+	public TipoFicha getTipo() {
+		return tipo;
+	}
 	public Object[] getColunas() {
 		return null;
 	}
