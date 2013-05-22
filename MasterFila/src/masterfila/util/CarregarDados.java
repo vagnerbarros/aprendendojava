@@ -18,7 +18,7 @@ public class CarregarDados {
 		List<TipoFicha> tipos = fachada.cadastroTipoFicha().listar();
 		for(TipoFicha tipo : tipos){
 			Fila nova = new Fila(tipo);
-			List<Ficha> fichas = fachada.cadastroFicha().listarTipo(tipo);
+			List<Ficha> fichas = fachada.cadastroFicha().listarTipoAbertas(tipo);
 			nova.setFichas(fichas);
 			try {
 				fachada.cadastroFila().cadastrar(nova);

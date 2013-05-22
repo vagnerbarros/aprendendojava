@@ -21,6 +21,7 @@ import javax.swing.border.EtchedBorder;
 import masterfila.entidade.Ficha;
 import masterfila.entidade.Fila;
 import masterfila.entidade.TipoFicha;
+import masterfila.entidade.Usuario;
 import masterfila.fachada.Fachada;
 
 public class DialogSolicitarFicha extends JDialog implements ActionListener {
@@ -157,8 +158,10 @@ public class DialogSolicitarFicha extends JDialog implements ActionListener {
 		
 		if(tipo != null){
 			Fachada fachada = Fachada.getInstance();
+			Usuario cliente = fachada.cadastroUsuario().listar().get(0);
 			Fila fila = fachada.cadastroFila().buscarFila(tipo);	
 			Ficha ficha = fila.solicitarFicha();
+			ficha.setCliente(cliente);
 			fachada.cadastroFicha().cadastrar(ficha);
 		}
 	}

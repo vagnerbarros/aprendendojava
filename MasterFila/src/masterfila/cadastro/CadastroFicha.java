@@ -2,6 +2,7 @@ package masterfila.cadastro;
 
 import java.util.List;
 
+import masterfila.dominio.Chamado;
 import masterfila.entidade.Ficha;
 import masterfila.entidade.TipoFicha;
 import masterfila.repositorio.RepositorioFicha;
@@ -30,7 +31,12 @@ public class CadastroFicha {
 		return rep.listar();
 	}
 	
-	public List<Ficha> listarTipo(TipoFicha tipo){
-		return rep.listarTipo(tipo);
+	public List<Ficha> listarTipoAbertas(TipoFicha tipo){
+		return rep.listarTipoAberta(tipo);
+	}
+
+	public void fichaChamada(Ficha ultimaFicha) {
+		ultimaFicha.setChamado(Chamado.SIM);
+		atualizar(ultimaFicha);
 	}
 }

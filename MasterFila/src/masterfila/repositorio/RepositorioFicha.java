@@ -1,5 +1,6 @@
 package masterfila.repositorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import masterfila.dao.Dao;
@@ -32,12 +33,19 @@ public class RepositorioFicha {
 		return (List<Ficha>) dao.criarQuery("FROM ficha WHERE status <> '" + Constants.INATIVO + "'");
 	}
 	
-	public List<Ficha> listarTipo(TipoFicha tipo){
-		return (List<Ficha>) dao.buscarPorChaveEstrangeira(Ficha.class, tipo, "tipo");
-	}
-	
 	public void remover(Ficha del){
 		del.setStatus(Constants.INATIVO);
 		dao.atualizarObjeto(del);
+	}
+
+	public List<Ficha> listarTipoAberta(TipoFicha tipo) {
+		List<Ficha> lista = (List<Ficha>)dao.buscarPorChaveEstrangeira(Ficha.class, tipo, "tipo");
+		List<Ficha> retorno = new ArrayList<Ficha>();
+		for(Ficha f : lista){
+			if(f.getChamado().equals(Chamado.NAO)){
+				retorno.add(f);
+			}
+		}
+		return retorno;
 	}
 }
