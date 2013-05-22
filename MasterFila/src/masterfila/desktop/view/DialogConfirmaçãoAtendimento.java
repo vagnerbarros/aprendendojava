@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,7 +26,7 @@ import masterfila.entidade.TipoFicha;
 import masterfila.exception.FilaVaziaException;
 import masterfila.fachada.Fachada;
 
-public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListener{
+public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListener, WindowListener{
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTipoFicha;
@@ -36,8 +38,10 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private Guiche guiche;
 	private TipoFicha tipoFicha;
 	private Fila fila;
+	private Ficha ultimaFicha;
 	
 	public DialogConfirmaçãoAtendimento(Guiche guiche, TipoFicha tipoFicha){
+		this.addWindowListener(this);
 		setTitle("Atendimento");
 		this.guiche = guiche;
 		this.tipoFicha = tipoFicha;
@@ -196,20 +200,34 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private void chamarProximo(){
 		
 		try {
-			Ficha ficha = fila.atenderProximo();
-			String senha = ficha.getNumero();
-			String tipo = tipoFicha.getNome();
-			lblSenha.setText(senha);
-			lblTipoFicha.setText(tipo);
+			ultimaFicha = fila.atenderProximo();
+			mostrarChamada();
 		} catch (FilaVaziaException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
+	}
+	
+	private void mostrarChamada(){
+		String senha = ultimaFicha.getNumero();
+		String tipo = tipoFicha.getNome();
+		lblSenha.setText(senha);
+		lblTipoFicha.setText(tipo);
+	}
+	
+	private void repetirChamada(){
+		mostrarChamada();
+	}
+	
+	private void liberarGuiche(){
+		Fachada fachada = Fachada.getInstance();
+		fachada.cadastroGuiche().abrirGuiche(guiche);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JComponent elemento = (JComponent) e.getSource();
 		if(elemento.equals(btnFinalizar)){
+			liberarGuiche();
 			this.dispose();
 			DialogRealizarAtendimento d = new DialogRealizarAtendimento();
 			d.setVisible(true);
@@ -218,7 +236,17 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 			chamarProximo();
 		}
 		else if(elemento.equals(btnRepetir)){
-			
+			repetirChamada();
 		}
 	}
+
+	public void windowClosing(WindowEvent e) {
+		liberarGuiche();
+	}
+	public void windowOpened(WindowEvent e) {}
+	public void windowClosed(WindowEvent e) {}
+	public void windowIconified(WindowEvent e) {}
+	public void windowDeiconified(WindowEvent e) {}
+	public void windowActivated(WindowEvent e) {}
+	public void windowDeactivated(WindowEvent e) {}
 }

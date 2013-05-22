@@ -1,12 +1,12 @@
 package masterfila.desktop;
+
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import masterfila.desktop.view.DialogLogin;
-import masterfila.util.CarregarDados;
+import masterfila.desktop.view.DialogSolicitarFicha;
 
-public class Launch {
+public class LauncherSolicitarFicha {
 
 	public static void main(String[] args) throws IOException {
 		try {
@@ -20,9 +20,7 @@ public class Launch {
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
 
-		CarregarDados.go();
-		DialogLogin d = new DialogLogin();
-
+		DialogSolicitarFicha d = new DialogSolicitarFicha();
 		d.setVisible(true);
 	}
 }

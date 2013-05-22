@@ -49,6 +49,7 @@ public class ViewPrincipal extends JFrame implements ActionListener {
 	private JMenuItem mntmRealizarAtendimento;
 	private JMenuItem mntmSair;
 	private JMenuItem mntmMudarUsurio;
+	private JMenuItem mntmSolicitar;
 	
 	public ViewPrincipal() throws IOException {
 		setTitle("Master Fila - Sistema Inteligente de Gerenciamento de Filas de Atendimento");
@@ -170,6 +171,14 @@ public class ViewPrincipal extends JFrame implements ActionListener {
 		mntmRealizarAtendimento.addActionListener(this);
 		mnAtendimento.add(mntmRealizarAtendimento);
 		
+		JMenu mnSolicitarFicha = new JMenu("Solicitar Ficha");
+		menuBar.add(mnSolicitarFicha);
+		
+		mntmSolicitar = new JMenuItem("Solicitar");
+		mntmSolicitar.setIcon(new ImageIcon(ViewPrincipal.class.getResource("/masterfila/desktop/view/img/add.png")));
+		mntmSolicitar.addActionListener(this);
+		mnSolicitarFicha.add(mntmSolicitar);
+		
 		setExtendedState(MAXIMIZED_BOTH);
 		
 	}
@@ -179,6 +188,10 @@ public class ViewPrincipal extends JFrame implements ActionListener {
 		JComponent elemento = (JComponent) e.getSource();
 		if(elemento.equals(mntmRealizarAtendimento)){
 			DialogRealizarAtendimento d = new DialogRealizarAtendimento();
+			d.setVisible(true);
+		}
+		else if(elemento.equals(mntmSolicitar)){
+			DialogSolicitarFicha d = new DialogSolicitarFicha();
 			d.setVisible(true);
 		}
 		if(elemento.equals(mIncluirBox)){
