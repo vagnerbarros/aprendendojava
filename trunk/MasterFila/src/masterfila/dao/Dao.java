@@ -72,14 +72,13 @@ public class Dao {
 		}
 	}
 	
-	public <T> Object buscarPorChaveEstrangeira(Class<T> clazz, Object objetoEstrangeiro, String colunaEstrangeira){
+	public <T> List<T> buscarPorChaveEstrangeira(Class<T> clazz, Object objetoEstrangeiro, String colunaEstrangeira){
 		try{
 			sessao = HibernateUtil.getSession();
 			Criteria c = sessao.createCriteria(clazz);
 			c.add(Restrictions.eq(colunaEstrangeira, objetoEstrangeiro));
 			c.add(Restrictions.eq("status", Constants.ATIVO));
-			Object object = c.uniqueResult();
-			return object;
+			return c.list();
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;

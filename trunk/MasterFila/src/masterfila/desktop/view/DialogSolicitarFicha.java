@@ -18,20 +18,19 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 
-import masterfila.entidade.Guiche;
+import masterfila.entidade.Ficha;
+import masterfila.entidade.Fila;
 import masterfila.entidade.TipoFicha;
 import masterfila.fachada.Fachada;
 
-public class DialogRealizarAtendimento extends JDialog implements ActionListener {
+public class DialogSolicitarFicha extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private JButton btnCancelar;
 	private JButton btnChamar;
-	private JComboBox<Guiche> comboGuiche;
 	private JComboBox<TipoFicha> comboTipoFicha;
 	
-	public DialogRealizarAtendimento(){
-		setTitle("Atendimento");
+	public DialogSolicitarFicha(){
+		setTitle("Solicitar");
 		setResizable(false);
 		initComponents();
 	}
@@ -47,13 +46,8 @@ public class DialogRealizarAtendimento extends JDialog implements ActionListener
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBackground(Color.WHITE);
 		
-		JLabel lblNomeDoBox = new JLabel("Atender no box:");
-		lblNomeDoBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		
-		comboGuiche = new JComboBox<Guiche>();
 		comboTipoFicha = new JComboBox<TipoFicha>();
 		iniciarCombos();
 		
@@ -62,53 +56,38 @@ public class DialogRealizarAtendimento extends JDialog implements ActionListener
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblTipoDeAtendimento)
-						.addComponent(lblNomeDoBox))
-					.addGap(14)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboGuiche, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboTipoFicha, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
 				.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(26, Short.MAX_VALUE)
+					.addComponent(lblTipoDeAtendimento)
+					.addGap(14)
+					.addComponent(comboTipoFicha, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(64)
+							.addGap(7)
 							.addComponent(lblTipoDeAtendimento, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboGuiche, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNomeDoBox))
-							.addGap(11)
-							.addComponent(comboTipoFicha, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
+						.addComponent(comboTipoFicha, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+					.addGap(57)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		btnChamar = new JButton("  Iniciar Atendimento");
+		btnChamar = new JButton("  Solicitar");
 		btnChamar.addActionListener(this);
-		btnChamar.setIcon(new ImageIcon(DialogRealizarAtendimento.class.getResource("/masterfila/desktop/view/img/ok.png")));
-		
-		btnCancelar = new JButton("  Cancelar");
-		btnCancelar.addActionListener(this);
-		btnCancelar.setIcon(new ImageIcon(DialogRealizarAtendimento.class.getResource("/masterfila/desktop/view/img/cancel.png")));
+		btnChamar.setIcon(new ImageIcon(DialogSolicitarFicha.class.getResource("/masterfila/desktop/view/img/ok.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(129, Short.MAX_VALUE)
-					.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addContainerGap(243, Short.MAX_VALUE)
 					.addComponent(btnChamar)
 					.addContainerGap())
 		);
@@ -116,33 +95,31 @@ public class DialogRealizarAtendimento extends JDialog implements ActionListener
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnChamar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addComponent(btnChamar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setIcon(new ImageIcon(DialogRealizarAtendimento.class.getResource("/masterfila/desktop/view/img/icon_atendimentoBig.png")));
+		lblNewLabel.setIcon(new ImageIcon(DialogSolicitarFicha.class.getResource("/masterfila/desktop/view/img/icon_atendimentoBig.png")));
 		
-		JLabel lblBoxDeAtendimento = new JLabel("Realizar Atendimento");
+		JLabel lblBoxDeAtendimento = new JLabel("Solicitar Ficha de Atendimento");
 		lblBoxDeAtendimento.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		JLabel lblPreenchaOsDados = new JLabel("Selecione as op\u00E7\u00F5es abaixo");
+		JLabel lblPreenchaOsDados = new JLabel("Selecione o tipo de atendimento");
 		lblPreenchaOsDados.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(20)
-							.addComponent(lblPreenchaOsDados, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblBoxDeAtendimento, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblBoxDeAtendimento, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(20)
+							.addComponent(lblPreenchaOsDados, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
 					.addComponent(lblNewLabel)
 					.addContainerGap())
@@ -166,13 +143,7 @@ public class DialogRealizarAtendimento extends JDialog implements ActionListener
 	
 	private void iniciarCombos(){
 		Fachada fachada = Fachada.getInstance();
-		List<Guiche> guichesDisponiveis = fachada.cadastroGuiche().listarDisponiveis();
 		List<TipoFicha> tiposFicha = fachada.cadastroTipoFicha().listar();
-		
-		//iniciando combo guiche
-		for(Guiche g : guichesDisponiveis){
-			comboGuiche.addItem(g);
-		}
 		
 		//iniciando combo Tipos de ficha
 		for(TipoFicha t : tiposFicha){
@@ -180,27 +151,23 @@ public class DialogRealizarAtendimento extends JDialog implements ActionListener
 		}
 	}
 	
-	private void iniciarAtendimento(){
+	private void solicitarFicha(){
 		
-		Guiche guiche = (Guiche) comboGuiche.getSelectedItem();
-		TipoFicha tipoFicha = (TipoFicha) comboTipoFicha.getSelectedItem();
+		TipoFicha tipo = (TipoFicha) comboTipoFicha.getSelectedItem();
 		
-		Fachada fachada = Fachada.getInstance();
-		
-		fachada.cadastroGuiche().fecharGuiche(guiche);
-		DialogConfirmaçãoAtendimento d = new DialogConfirmaçãoAtendimento(guiche, tipoFicha);
-		this.dispose();
-		d.setVisible(true);
+		if(tipo != null){
+			Fachada fachada = Fachada.getInstance();
+			Fila fila = fachada.cadastroFila().buscarFila(tipo);	
+			Ficha ficha = fila.solicitarFicha();
+			fachada.cadastroFicha().cadastrar(ficha);
+		}
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JComponent elemento = (JComponent) e.getSource();
 		if(elemento.equals(btnChamar)){
-			iniciarAtendimento();
-		}
-		if(elemento.equals(btnCancelar)){
-			this.dispose();
+			solicitarFicha();
 		}
 	}
 }

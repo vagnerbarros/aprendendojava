@@ -1,5 +1,7 @@
 package masterfila.entidade;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,8 +37,10 @@ public class Ficha implements Entidade{
 	private String numero;
 	
 	@Column(name = "data", length = 20, nullable = false)
-	private String data;
+	private Date data;
 	
+	@Column(name = "chamado", length = 1, nullable = false)
+	private String chamado;
 	
 	@Column(name = "status", length = 10, nullable = false)
 	private String status;
@@ -78,14 +82,20 @@ public class Ficha implements Entidade{
 	public void setGuiche(Guiche guiche) {
 		this.guiche = guiche;
 	}
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 	public void setTipo(TipoFicha tipo) {
 		this.tipo = tipo;
+	}
+	public String getChamado() {
+		return chamado;
+	}
+	public void setChamado(String chamado) {
+		this.chamado = chamado;
 	}
 	public TipoFicha getTipo() {
 		return tipo;

@@ -3,6 +3,7 @@ package masterfila.repositorio;
 import java.util.List;
 
 import masterfila.dao.Dao;
+import masterfila.dominio.Chamado;
 import masterfila.entidade.Ficha;
 import masterfila.entidade.TipoFicha;
 import masterfila.util.Constants;
@@ -19,6 +20,7 @@ public class RepositorioFicha {
 	
 	public void inserir(Ficha novo){
 		novo.setStatus(Constants.ATIVO);
+		novo.setChamado(Chamado.NAO);
 		dao.salvarObjeto(novo);
 	}
 	

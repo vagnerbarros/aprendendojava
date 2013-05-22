@@ -47,4 +47,9 @@ public class CadastroGuiche {
 		guiche.setSituacao(SituacaoGuiche.FUNCIONANDO);
 		atualizar(guiche);
 	}
+
+	public void abrirGuiche(Guiche guiche) {
+		guiche.setSituacao(SituacaoGuiche.LIVRE);
+		atualizar(guiche);
+	}
 }
