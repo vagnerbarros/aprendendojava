@@ -25,6 +25,7 @@ import masterfila.entidade.Guiche;
 import masterfila.entidade.TipoFicha;
 import masterfila.exception.FilaVaziaException;
 import masterfila.fachada.Fachada;
+import masterfila.util.Sessao;
 
 public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListener, WindowListener{
 
@@ -192,15 +193,16 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
-		
-		
-		
 	}
 	
 	private void chamarProximo(){
 		
 		try {
 			ultimaFicha = fila.atenderProximo();
+			ultimaFicha.setAtendente(Sessao.getFuncionario());
+			ultimaFicha.setGuiche(guiche);
+			Fachada fachada = Fachada.getInstance();
+			fachada.cadastroFicha().fichaChamada(ultimaFicha);
 			mostrarChamada();
 		} catch (FilaVaziaException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());

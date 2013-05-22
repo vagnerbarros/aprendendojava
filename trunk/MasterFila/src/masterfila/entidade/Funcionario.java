@@ -34,7 +34,7 @@ public class Funcionario implements Entidade{
 	@Column(name = "login", length = 20, nullable = false)
 	private String login;
 	
-	@Column(name = "senha", length = 20, nullable = false)
+	@Column(name = "senha", length = 50, nullable = false)
 	private String senha;
 	
 	@Column(name = "status", length = 10, nullable = false)

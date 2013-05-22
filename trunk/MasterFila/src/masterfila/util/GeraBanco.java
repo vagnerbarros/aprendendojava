@@ -6,6 +6,7 @@ import masterfila.dominio.Categoria;
 import masterfila.dominio.Perfil;
 import masterfila.entidade.Estabelecimento;
 import masterfila.entidade.Funcionario;
+import masterfila.entidade.Usuario;
 import masterfila.fachada.Fachada;
 
 import org.hibernate.cfg.Configuration;
@@ -37,6 +38,21 @@ public class GeraBanco {
             f.setPerfil(Perfil.GERENTE);
             f.setSenha("v");
             fachada.cadastroFuncionario().cadastrar(f);
+
+            Usuario u = new Usuario();
+            u.setNome("Solicitação Local");
+            u.setBairro("Bairro");
+            u.setCep("CEP");
+            u.setCidade("Cidade");
+            u.setCpf("CPF");
+            u.setEstado("PE");
+            u.setLogin("Login");
+            u.setSenha("Senha");
+            u.setNumero("Numero");
+            u.setRua("Rua");
+            u.setTelefone("Telefone");
+            u.setEmpresa(e);
+            fachada.cadastroUsuario().cadastrar(u);
             
             JOptionPane.showMessageDialog(null, "O Banco de Dados foi gerado com sucesso!",
             		"Fafica .:. Alerta",JOptionPane.INFORMATION_MESSAGE);
