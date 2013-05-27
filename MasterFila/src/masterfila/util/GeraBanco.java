@@ -33,10 +33,10 @@ public class GeraBanco {
             f.setCpf("050.529.594-60");
             f.setDataNascimento("10/10/10");
             f.setEmpresa(e);
-            f.setLogin("v");
+            f.setLogin("1");
             f.setNome("Vagner Barros Pereira");
             f.setPerfil(Perfil.GERENTE);
-            f.setSenha("v");
+            f.setSenha("1");
             fachada.cadastroFuncionario().cadastrar(f);
 
             Usuario u = new Usuario();

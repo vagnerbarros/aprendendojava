@@ -37,6 +37,8 @@ public class DialogIncluirBox extends JDialog implements ActionListener{
 	
 	private void initComponents(){
 		
+		setModal(true);
+		
 		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width-400)/2, (screenSize.height-300)/2, 400, 222);
 		
