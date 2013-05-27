@@ -67,5 +67,6 @@
 	<classpathentry kind="lib" path="lib/stax2-api-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/staxmapper-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/woodstox-core-asl-4.1.1.jar"/>
+	<classpathentry kind="lib" path="forms-1.3.0.jar" sourcepath="forms-1.3.0-src.zip"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
