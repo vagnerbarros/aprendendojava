@@ -23,6 +23,7 @@ import masterfila.entidade.Fila;
 import masterfila.entidade.TipoFicha;
 import masterfila.entidade.Usuario;
 import masterfila.fachada.Fachada;
+import masterfila.util.Sessao;
 
 public class DialogSolicitarFicha extends JDialog implements ActionListener {
 
@@ -163,6 +164,8 @@ public class DialogSolicitarFicha extends JDialog implements ActionListener {
 			Ficha ficha = fila.solicitarFicha();
 			ficha.setCliente(cliente);
 			fachada.cadastroFicha().cadastrar(ficha);
+			DialogFicha d = new DialogFicha(ficha);
+			d.setVisible(true);
 		}
 	}
 	
