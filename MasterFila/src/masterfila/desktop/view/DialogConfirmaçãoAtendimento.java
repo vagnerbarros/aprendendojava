@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -40,6 +41,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private TipoFicha tipoFicha;
 	private Fila fila;
 	private Ficha ultimaFicha;
+	private ViewChamadaSenha viewChamada;
 	
 	public DialogConfirmaçãoAtendimento(Guiche guiche, TipoFicha tipoFicha){
 		this.addWindowListener(this);
@@ -50,6 +52,11 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		fila = fachada.cadastroFila().buscarFila(tipoFicha);
 		setResizable(false);
 		initComponents();
+		try {
+			viewChamada = new ViewChamadaSenha();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void initComponents(){
@@ -210,10 +217,16 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	}
 	
 	private void mostrarChamada(){
+		
+		//chamada no terminal do atendente
 		String senha = ultimaFicha.getNumero();
 		String tipo = tipoFicha.getNome();
 		lblSenha.setText(senha);
 		lblTipoFicha.setText(tipo);
+		
+		//chamada no monitor do estabelecimento
+		viewChamada.adicionarFicha(ultimaFicha);
+		viewChamada.setVisible(true);
 	}
 	
 	private void repetirChamada(){
