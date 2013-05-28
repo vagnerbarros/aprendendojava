@@ -223,7 +223,9 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		String tipo = tipoFicha.getNome();
 		lblSenha.setText(senha);
 		lblTipoFicha.setText(tipo);
-		
+	}
+	
+	private void chamarHistorico(){
 		//chamada no monitor do estabelecimento
 		viewChamada.adicionarFicha(ultimaFicha);
 		viewChamada.setVisible(true);
@@ -249,6 +251,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		}
 		else if(elemento.equals(btnChamar)){
 			chamarProximo();
+			chamarHistorico();
 		}
 		else if(elemento.equals(btnRepetir)){
 			repetirChamada();
