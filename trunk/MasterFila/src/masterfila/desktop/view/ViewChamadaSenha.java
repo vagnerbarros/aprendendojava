@@ -1,25 +1,26 @@
 package masterfila.desktop.view;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.UIManager;
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import javax.swing.SpringLayout;
+
+import masterfila.entidade.Ficha;
 
 public class ViewChamadaSenha extends JFrame {
 
@@ -33,10 +34,14 @@ public class ViewChamadaSenha extends JFrame {
 	private JLabel lbl_historico_box_1;
 	private JLabel lbl_historico_box_2;
 	private JLabel lbl_historico_box_3;
+	private List<Ficha> historico;
+	private int index;
 
 	public ViewChamadaSenha() throws IOException{
 		getContentPane().setBackground(SystemColor.controlHighlight);
 		initComponents();
+		historico = new ArrayList<Ficha>();
+		index = 0;
 	}
 	
 	private static BufferedImage loadImage(URL url) throws IOException {
@@ -149,21 +154,21 @@ public class ViewChamadaSenha extends JFrame {
 		);
 		panel_6.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_BOX = new JLabel("05");
+		lbl_BOX = new JLabel("-");
 		lbl_BOX.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_BOX.setForeground(Color.BLACK);
 		lbl_BOX.setFont(new Font("Tahoma", Font.BOLD, 70));
 		panel_6.add(lbl_BOX);
 		panel_5.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lblSENHA = new JLabel("903");
+		lblSENHA = new JLabel("-");
 		lblSENHA.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSENHA.setForeground(Color.BLACK);
 		lblSENHA.setFont(new Font("Tahoma", Font.BOLD, 70));
 		panel_5.add(lblSENHA);
 		panel_7.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_ATENDIMENTO = new JLabel("VAGNER D\u00C1 O CU");
+		lbl_ATENDIMENTO = new JLabel("-");
 		lbl_ATENDIMENTO.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_ATENDIMENTO.setForeground(Color.BLACK);
 		lbl_ATENDIMENTO.setFont(new Font("Tahoma", Font.BOLD, 40));
@@ -259,7 +264,7 @@ public class ViewChamadaSenha extends JFrame {
 		);
 		panel_16.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_box_3 = new JLabel("GAY");
+		lbl_historico_box_3 = new JLabel("-");
 		lbl_historico_box_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_box_3.setForeground(Color.BLACK);
 		lbl_historico_box_3.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -267,7 +272,7 @@ public class ViewChamadaSenha extends JFrame {
 		panel_16.add(lbl_historico_box_3);
 		panel_15.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_senha_3 = new JLabel("SENHA");
+		lbl_historico_senha_3 = new JLabel("-");
 		lbl_historico_senha_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_senha_3.setForeground(Color.BLACK);
 		lbl_historico_senha_3.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -275,7 +280,7 @@ public class ViewChamadaSenha extends JFrame {
 		panel_15.add(lbl_historico_senha_3);
 		panel_14.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_box_2 = new JLabel("VAGNER");
+		lbl_historico_box_2 = new JLabel("-");
 		lbl_historico_box_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_box_2.setForeground(Color.BLACK);
 		lbl_historico_box_2.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -283,7 +288,7 @@ public class ViewChamadaSenha extends JFrame {
 		panel_14.add(lbl_historico_box_2);
 		panel_13.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_senha_2 = new JLabel("SENHA");
+		lbl_historico_senha_2 = new JLabel("-");
 		lbl_historico_senha_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_senha_2.setForeground(Color.BLACK);
 		lbl_historico_senha_2.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -291,7 +296,7 @@ public class ViewChamadaSenha extends JFrame {
 		panel_13.add(lbl_historico_senha_2);
 		panel_12.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_box_1 = new JLabel("BOX");
+		lbl_historico_box_1 = new JLabel("-");
 		lbl_historico_box_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_box_1.setForeground(Color.BLACK);
 		lbl_historico_box_1.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -299,7 +304,7 @@ public class ViewChamadaSenha extends JFrame {
 		panel_12.add(lbl_historico_box_1);
 		panel_11.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		lbl_historico_senha_1 = new JLabel("01");
+		lbl_historico_senha_1 = new JLabel("-");
 		lbl_historico_senha_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_historico_senha_1.setForeground(Color.BLACK);
 		lbl_historico_senha_1.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -332,5 +337,47 @@ public class ViewChamadaSenha extends JFrame {
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
 		
+	}
+	
+	public void adicionarFicha(Ficha ficha){
+		
+		historico.add(index, ficha);
+		index++;
+		atualizarTela();
+	}
+	
+	private void atualizarTela(){
+		
+		Ficha atual = historico.get(index - 1);
+		lblSENHA.setText(atual.getNumero());
+		lbl_BOX.setText(atual.getGuiche().getNumero());
+		lbl_ATENDIMENTO.setText(atual.getTipo().getNome());
+
+		atualizarHistorico();
+	}
+	
+	private void atualizarHistorico(){
+		
+		Ficha atual = null;
+		int posicao = index - 1;
+		if(posicao >= 0){
+			atual = historico.get(posicao);
+			lbl_historico_senha_1.setText(atual.getNumero());
+			lbl_historico_box_1.setText(atual.getGuiche().getNumero());
+		}
+		
+		posicao = index - 2;
+		if(posicao >= 0){
+			atual = historico.get(posicao);
+			lbl_historico_senha_2.setText(atual.getNumero());
+			lbl_historico_box_2.setText(atual.getGuiche().getNumero());
+		}
+		
+		posicao = index - 3;
+		if(posicao >= 0){
+			atual = historico.get(posicao);
+			lbl_historico_senha_3.setText(atual.getNumero());
+			lbl_historico_box_3.setText(atual.getGuiche().getNumero());
+		}
 	}
 }
