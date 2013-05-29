@@ -34,4 +34,14 @@ public class RepositorioUsuario {
 		del.setStatus(Constants.INATIVO);
 		dao.atualizarObjeto(del);
 	}
+
+	public Usuario logar(String login, String senha) {
+		List<Usuario> lista = (List<Usuario>)dao.criarQuery("FROM usuario where login LIKE '"+ login +"' AND senha LIKE '"+ senha +"'  AND status <> '" + Constants.INATIVO + "'");
+		if(!lista.isEmpty()){
+			return lista.get(0);
+		}
+		else{
+			return null;
+		}
+	}
 }

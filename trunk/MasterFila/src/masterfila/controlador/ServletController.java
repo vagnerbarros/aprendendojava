@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import masterfila.model.Acao;
 import masterfila.model.AcessarSistema;
 import masterfila.model.Erro;
 import masterfila.model.ListarEmpresa;
-import masterfila.model.Acao;
+import masterfila.model.Logar;
 
 
 /**
@@ -40,6 +41,7 @@ public class ServletController extends HttpServlet {
 		mapa.put("erro", new Erro());
 		mapa.put("listarEmpresas", new ListarEmpresa());
 		mapa.put("acessarSistema", new AcessarSistema());
+		mapa.put("logar", new Logar());
 	}
 
 	/**
