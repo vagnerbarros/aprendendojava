@@ -10,8 +10,9 @@ public class Constants {
 	public static String ATIVO = "ATIVO";
 	public static String INATIVO = "INATIVO";
 	
-	//siglas dos estados brasileiros
 	public static String [] listaEstados = {"Pernambuco"};
+	
+	public static String [] listaCidades = {"Caruaru", "São Caetano", "Toritama", "Santa Cruz"};
 	
 	public static int getPosicaoEstado(String estado){
 		int retorno = -1;
