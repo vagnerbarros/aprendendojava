@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="masterfila.entidade.Usuario"%>
 <%@page import="masterfila.util.Constants"%>
 <%@page import="com.sun.corba.se.impl.orbutil.closure.Constant"%>
 <html>
@@ -100,21 +101,34 @@
 			</div>
 			
 			<div class="right_topo">
+			<%
+			Usuario u = (Usuario) session.getAttribute("usuario");
+			if(u == null){
+			%>
 				
 				<h2>Acessar a Área do cliente</h2>
 				
 				<div class="clr"></div>
 				
-				<form action="" class="form_login"> 
+				<form action="controlador" method="POST" class="form_login"> 
 					
 					<label>Login:</label>
 					<label>Senha:</label>
-					<input type="text"/>
-					<input type="password"/>
+					<input type="text" name="login"/>
+					<input type="password" name="senha"/>
 					<input type="submit" value="Confirmar" >
+					<input type="hidden" value="logar" name="acao">
 					<a href="">Esqueci a Senha</a>
 					
 				</form>
+			<%
+			}
+			else{ %>
+				<h2>Bem Vindo <%=u.getNome() %></h2>
+				
+				<div class="clr"></div>
+				
+			<% } %>
 			</div>
 			
 		</div>

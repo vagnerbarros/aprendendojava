@@ -31,4 +31,9 @@ public class CadastroUsuario {
 	public List<Usuario> listar(){
 		return rep.listar();
 	}
+
+	public Usuario logar(String login, String senha) {
+		senha = Criptografia.encryptPassword(senha);
+		return rep.logar(login, senha);
+	}
 }

@@ -24,13 +24,14 @@
 				
 				<div class="clr"></div>
 				
-				<form action="" class="form_login"> 
+				<form action="controlador" method="POST" class="form_login"> 
 					
 					<label>Login:</label>
 					<label>Senha:</label>
-					<input type="text"/>
-					<input type="password"/>
+					<input type="text" name="login"/>
+					<input type="password" name="senha"/>
 					<input type="submit" value="Confirmar" >
+					<input type="hidden" value="logar" name="acao">
 					<a href="">Esqueci a Senha</a>
 					
 				</form>
