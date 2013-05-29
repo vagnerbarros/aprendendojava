@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import masterfila.entidade.Estabelecimento;
 import masterfila.fachada.Fachada;
 
-public class ListarEmpresa implements Model{
+public class ListarEmpresa implements Acao{
 
-	public String executa(HttpServletRequest request, HttpServletResponse response) {
+	public String executar(HttpServletRequest request, HttpServletResponse response) {
 		
 		Fachada fachada = Fachada.getInstance();
 		List<Estabelecimento> lista = fachada.cadastroEmpresa().listar();

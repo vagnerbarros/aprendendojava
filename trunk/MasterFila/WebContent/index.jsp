@@ -41,7 +41,9 @@
 			
 			<h2>.: Acesse o Master Fila :.</h2>
 			
-			<form class="form_cidade" action="home.jsp">
+			<form class="form_cidade" method="POST" action="controlador">
+			
+			<input type="hidden" value="acessarSistema" name="acao">
 			
 			<label>Selecione o Estado:</label>
 			
@@ -56,7 +58,12 @@
 			<label>Selecione a Cidade:</label>
 			
 			<select name="cidades">
-				<option value="caruaru">Caruaru</option>
+				<%
+				String [] cidades = Constants.listaCidades;
+				for(String cidade : cidades){
+				%>
+				<option value="<%=cidade %>"><%=cidade %></option>
+				<%} %>
 			</select>
 			
 			<input type="submit" value="ACESSAR o MasterFila"/>
