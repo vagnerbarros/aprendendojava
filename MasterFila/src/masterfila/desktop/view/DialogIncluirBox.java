@@ -46,7 +46,8 @@ public class DialogIncluirBox extends JDialog implements ActionListener{
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBackground(Color.WHITE);
 		
-		JLabel lblNomeDoBox = new JLabel("Nome do Box:");
+		JLabel lblNomeDoBox = new JLabel("Número do Box:");
+		//JLabel lblNomeDoBox = new JLabel("Nome do Box:");
 		lblNomeDoBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		txtNomeBox = new JTextField();
