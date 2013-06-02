@@ -95,53 +95,20 @@
 		<div class="limite">
 			
 			<div class="left_topo">
-				<a href="index.jsp">
 					<img alt="" src="css/img/logo.png" height="95"/>
-				</a>
 			</div>
 			
 			<div class="right_topo">
-			<%
-			Usuario u = (Usuario) session.getAttribute("usuario");
-			if(u == null){
-			%>
 				
-				<h2>Acessar a Área do cliente</h2>
-				
-				<div class="clr"></div>
-				
-				<form action="controlador" method="POST" class="form_login"> 
-					
-					<label>Login:</label>
-					<label>Senha:</label>
-					<input type="text" name="login"/>
-					<input type="password" name="senha"/>
-					<input type="submit" value="Confirmar" >
-					<input type="hidden" value="logar" name="acao">
-					<a href="">Esqueci a Senha</a>
-					
-				</form>
-			<%
-			}
-			else{ %>
-				<h2>Bem Vindo <%=u.getNome() %></h2>
-				
-				<div class="clr"></div>
-				
-			<% } %>
+				<%@ include file="componente_login.jsp"%>
+							
 			</div>
 			
 		</div>
 	
 	</header>
 	
-	<div class="limite">
-		<div class="content_cidade_selecionada">
-			<h6>Você está em:</h6>
-			<h4>${cidade} - ${estado}</h4>
-			<a href="index.jsp" id="dialog_link">Alterar Cidade</a>
-		</div>
-	</div>
+	<div class="clr"></div>
 		
 </body>
 </html>
