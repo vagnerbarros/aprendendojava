@@ -1,5 +1,60 @@
 @CHARSET "ISO-8859-1";
 
+.menu{
+	position: relative;
+	border-bottom: solid 1px #D2D3D5;
+	height: 30px;
+	background-color: #FAFAFA;
+	margin-top: 3px;
+}
+
+.img_load{
+	position: relative;
+	width: 400px;
+	margin-left: 200px;
+	margin-top: 20px;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.lista_white{
+	position: relative;
+	background-color: white;
+	height: 1px;
+	margin-bottom: 30px;
+}
+
+.lista_menu{
+	position: relative;
+	float: left;
+	list-style: none;
+	margin-top: 6px;
+	margin-left: 110px;
+}
+
+.lista_menu li{
+	position: relative;
+	float: left;
+}
+
+.lista_menu li a{
+	text-decoration: none;
+	color: black;
+	border-right: solid 1px #D2D3D5;
+	padding: 3px 10px;
+}
+
+.lista_menu li a:hover{
+	text-decoration: none;
+	color: black;
+	background-color: #F1F1F2;
+}
+
+.content_login{
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
 .content_leve_o_master{
 	position: relative;
 	border: solid 1px #D2D3D5;
@@ -196,7 +251,7 @@
 .listagem_empresas{
 	position: relative;
 	margin-top: 15px;
-	width: 800px;
+	width: 700px;
 	margin: auto;
 }
 
@@ -209,16 +264,16 @@
 .limite_lista_categorias{
 	position: relative;
 	width: 720px;
-	margin-left: 120px;
+	margin-left: 200px;
 	margin-top: 15px;
 }
 
 .limite_lista_categorias h4{
 	position: relative;
-	margin: 0;
 	padding: 0;
-	margin-left: -20px;
 	margin-top: 12px;
+	margin-left: -45px;
+	margin-bottom: 10px;
 }
 
 .lista_categorias{
@@ -245,7 +300,7 @@
 	height: 25px;
 	padding-top: 10px;
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 14px;
 	cursor: pointer;
 }
 

@@ -28,12 +28,24 @@
 			</form>
 		</div>
 	</div>
-
+	
+	<%@ include file="menu.jsp"%>
+	
+	<div class="limite">
+		<div class="content_cidade_selecionada">
+			<h6>Você está em:</h6>
+			<h4>${cidade} - ${estado}</h4>
+			<a href="index.jsp" id="dialog_link">Alterar Cidade</a>
+		</div>
+	</div>
+	
+	<div class="clr"></div>
+	
 	<div class="limite">
 
 		<div class="limite_lista_categorias">
 
-			<h4>Categorias</h4>
+			<h4>Localizar empresa por categoria</h4>
 
 			<ul class="lista_categorias primeira_lista">
 				<li><a> <img alt=""
