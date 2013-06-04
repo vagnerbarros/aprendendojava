@@ -15,13 +15,15 @@
 				
 				<form action="controlador" method="POST" class="form_login"> 
 					
-					<label>Login:</label>
-					<label>Senha:</label>
-					<input type="text" name="login"/>
-					<input type="password" name="senha"/>
-					<input type="submit" value="Confirmar" >
-					<input type="hidden" value="logar" name="acao">
-					<a href="">Esqueci a Senha</a>
+					<label class="wh160">Login:</label>
+					<label class="wh160">Senha:</label>
+					<input type="text" name="login" class="wh150"/>
+					<input type="password" name="senha" class="wh150"/>
+					<input type="submit" value="Confirmar" />
+					<input type="hidden" value="logar" name="acao"/>
+					<a href="cadastro.jsp">Cadastre-se </a> <a>|</a>
+					<a href=""> Esqueci a Senha</a>
+					
 					
 				</form>
 			<%

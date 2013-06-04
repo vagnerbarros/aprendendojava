@@ -1,11 +1,46 @@
 @CHARSET "ISO-8859-1";
 
+h4{
+	font-size: 20px;
+	font-weight: normal;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
 .menu{
 	position: relative;
 	border-bottom: solid 1px #D2D3D5;
+	border-top: solid 1px #D2D3D5;
 	height: 30px;
 	background-color: #FAFAFA;
-	margin-top: 3px;
+	margin-top: 7px;
+}
+
+.div_alerts{
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #FFF7F5;
+	padding: 10px;
+	border-radius: 10px;
+	border: solid 1px #CD0A0A; 
+	font-size: 12px;
+	min-width: 200px;
+	box-shadow: 0 0 3px 3px #E6E7E8;
+}
+
+.div_alerts p{
+	display: none;
+}
+
+.div_alerts .link_close{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.div_alerts .link_close:hover{
+	box-shadow: 0 0 3px 3px #E6E7E8;
 }
 
 .img_load{

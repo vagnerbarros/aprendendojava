@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="css/style_topo.css" rel="stylesheet" />
 <link rel="stylesheet" href="themes/base/jquery.ui.all.css">
+<link href="css/style_cadastro.css" rel="stylesheet" />
+
 <script src="ui/jquery-1.7.2.js"></script>
 <script src="external/jquery.bgiframe-2.1.2.js"></script>
 <script src="ui/jquery.ui.core.js"></script>
@@ -83,9 +85,7 @@
 		</div>
 		
 		<div class="right_escolha_cidade">
-			
-			<img alt="" src="css/img/logo_form.png" width="70"/>
-						
+				<img alt="" src="css/img/logo_form.png" width="70"/>
 		</div>
 		
 	</div>
@@ -95,7 +95,9 @@
 		<div class="limite">
 			
 			<div class="left_topo">
+				<a href="index.jsp">
 					<img alt="" src="css/img/logo.png" height="95"/>
+				</a>
 			</div>
 			
 			<div class="right_topo">
