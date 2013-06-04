@@ -25,7 +25,7 @@
 			
 			<p><strong>Leve o Master Fila para sua empresa!</strong></p>
 			
-			<a href="">Clique aqui e Conheça</a>
+			<a href="sobre.jsp">Clique aqui e Conheça</a>
 			
 			<div class="clr"></div>
 			
@@ -69,7 +69,6 @@
 			<input type="submit" value="ACESSAR o MasterFila"/>
 			
 		</form>
-		
 			
 		</div>
 				

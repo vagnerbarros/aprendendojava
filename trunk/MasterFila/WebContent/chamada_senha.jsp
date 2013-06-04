@@ -35,8 +35,7 @@
 </head>
 <body>
 	
-	<script type="text/javascript">
-	</script>
+	<%@ include file="componente_localizar_empresa.jsp"%>
 	
 	<%@ include file="menu.jsp"%>
 	
