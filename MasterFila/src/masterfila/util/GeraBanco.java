@@ -27,6 +27,11 @@ public class GeraBanco {
             e.setCategoria(Categoria.AGENCIA);
             e.setEmail("empresa@gmail.com");
             e.setNome("Banco do Brasil");
+            e.setCidade("Caruaru");
+            e.setCnpj("21.544.292/0001-01");
+            e.setEndereco("Rua padre miguel");
+            e.setEstado("Pernambuco");
+            e.setRazao("Banco do Brasil do Brasilllll");
             fachada.cadastroEmpresa().cadastrar(e);
             
             Funcionario f = new Funcionario();
@@ -53,6 +58,16 @@ public class GeraBanco {
             u.setTelefone("Telefone");
             u.setEmpresa(e);
             fachada.cadastroUsuario().cadastrar(u);
+            
+            Funcionario f2 = new Funcionario();
+            f2.setCpf("0758.220.743-24");
+            f2.setDataNascimento("10/10/10");
+            f2.setEmpresa(e);
+            f2.setLogin("2");
+            f2.setNome("Plínio Manoel Gay da Silva");
+            f2.setPerfil(Perfil.ADMIN);
+            f2.setSenha("2");
+            fachada.cadastroFuncionario().cadastrar(f2);
             
             JOptionPane.showMessageDialog(null, "O Banco de Dados foi gerado com sucesso!",
             		"Fafica .:. Alerta",JOptionPane.INFORMATION_MESSAGE);

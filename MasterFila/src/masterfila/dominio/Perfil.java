@@ -2,6 +2,7 @@ package masterfila.dominio;
 
 public class Perfil {
 
+	public static String ADMIN = "Administrador";
 	public static String GERENTE = "Gerente";
 	public static String FUNCIONARIO = "Funcionário";
 	public static String CLIENTE = "Cliente";
