@@ -48,7 +48,7 @@
 			
 			<h4>Cadastro de Usuário</h4>
 
-			<form action="index.jsp" class="form_cadastro_cliente" name="form_cadastro_cliente">
+			<form action="cadastro_sucesso.jsp" class="form_cadastro_cliente" name="form_cadastro_cliente">
 				
 				<label class="wh300"> <span>* Campos Obrigatórios</span> </label>
 				

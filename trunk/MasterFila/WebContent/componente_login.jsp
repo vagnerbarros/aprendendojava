@@ -22,7 +22,7 @@
 					<input type="submit" value="Confirmar" />
 					<input type="hidden" value="logar" name="acao"/>
 					<a href="cadastro.jsp">Cadastre-se </a> <a>|</a>
-					<a href=""> Esqueci a Senha</a>
+					<a href="esqueci_senha.jsp"> Esqueci a Senha</a>
 					
 					
 				</form>

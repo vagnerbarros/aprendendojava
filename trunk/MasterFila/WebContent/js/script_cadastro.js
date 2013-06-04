@@ -1,4 +1,20 @@
 
+function validarRecuperarEmail() {
+	
+	email = document.getElementById("txtEmail").value;
+	
+	if(email==""){
+		exibir_div_por_id("div_alert_recuperar_email");
+		exibir_div_por_id("alt_email_vazio");
+	}
+	
+}
+
+function fechar_alert_recuperar_email() {
+	ocultar_div_por_id("div_alert_recuperar_email");
+	ocultar_div_por_id("alt_email_vazio");
+}
+
 $(document).ready(function() {
 	jQuery(function($){
 		$("#txtCpf").mask("999.999.999-99", {placeholder: " "});

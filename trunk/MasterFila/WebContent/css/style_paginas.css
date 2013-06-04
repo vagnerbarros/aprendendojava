@@ -4,6 +4,36 @@
 	width: 680px;
 }
 
+.div_quadro_sucesso{
+	position: relative;
+	border: solid 1px #2968B6;
+	background-color: white;
+	margin-top: 90px;
+	margin-bottom: 90px;
+	border-radius:6px;
+	box-shadow: 0 0 10px 10px #E6E7E8; 
+}
+
+.div_quadro_sucesso h3{
+	text-align: center;
+	font-size: 22px;
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 50px;
+	color: #2968B6;
+	margin-bottom: 0;
+}
+
+.div_quadro_sucesso h4{
+	text-align: center;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: italic;
+	color: black;
+	margin: 0;
+	margin-bottom: 50px;
+}
+
 .link_levar{
 	position: absolute;
 	background-color: #0882BA;
