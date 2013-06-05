@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MasterFila - Início</title>
 
+<script src="js/script_cadastro.js"></script>
+
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/style_paginas.css" rel="stylesheet" />
 
