@@ -18,10 +18,32 @@
 	
 	<%@ include file="menu.jsp"%>
 	
-	<div class="limite wh700">
+	<div class="limite wh700 perfil">
 			
 			<h4>Meu Perfil</h4>
-	
+			
+			<strong>Nome:</strong>
+			<span>Plínio Manoel</span>
+			
+			<br/>
+			
+			<strong>CPF:</strong>
+			<span>101.004.934-83</span>
+			
+			<br/>
+			
+			<strong>Email:</strong>
+			<span>ti.plinio@gmail.com</span>
+			
+			<br/>
+			
+			<div class="blue_line"></div>
+			
+			<a href="editar_cadastro.jsp">Editar Perfil</a>
+			
+			<br/>
+			<br/>
+			
 			<div class="clr"></div>
 		
 	</div>
