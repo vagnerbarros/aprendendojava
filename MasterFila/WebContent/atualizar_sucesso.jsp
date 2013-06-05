@@ -24,7 +24,7 @@
 			
 			<div class="div_quadro_sucesso">
 				
-				<h3>Cadastro Realizado com Sucesso!</h3>
+				<h3>Dados Atualizados com Sucesso!</h3>
 				
 				<h4>Aguarde...</h4>
 				

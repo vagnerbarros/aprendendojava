@@ -9,6 +9,9 @@
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/style_paginas.css" rel="stylesheet" />
 
+<script src="js/jquery.maskedinput-1.3.min.js"></script>
+<script type="text/javascript" src="js/script_cadastro.js"></script>
+
 </head>
 <body>
 	
@@ -32,9 +35,9 @@
 				
 			</div>
 			
-			<h4>Cadastro de Usuário</h4>
+			<h4>Editar Perfil</h4>
 
-			<form action="cadastro_sucesso.jsp" class="form_cadastro_cliente" name="form_cadastro_cliente">
+			<form action="atualizar_sucesso.jsp" class="form_cadastro_cliente" name="form_cadastro_cliente">
 				
 				<label class="wh300"> <span>* Campos Obrigatórios</span> </label>
 				
@@ -59,7 +62,7 @@
 				<input type="password" id="txtSenha" class="wh225"/>
 				<input type="password" id="txtConfirmsenha" class="wh225"/>
 				
-				<a href="javascript:validarCadastroUsuario()" class="submit">Concluir</a>
+				<a href="javascript:validarCadastroUsuario()" class="submit">Atualizar</a>
 				
 			</form>
 	

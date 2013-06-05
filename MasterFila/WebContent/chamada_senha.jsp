@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MasterFila - Início</title>
-<script type="text/javascript" src="js/paginate.js"></script>
 <link href="css/style.css" rel="stylesheet" />
 
 <script type="text/javascript">  
