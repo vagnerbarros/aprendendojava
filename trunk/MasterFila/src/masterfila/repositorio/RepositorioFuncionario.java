@@ -3,7 +3,6 @@ package masterfila.repositorio;
 import java.util.List;
 
 import masterfila.dao.Dao;
-import masterfila.entidade.Ficha;
 import masterfila.entidade.Funcionario;
 import masterfila.util.Constants;
 
