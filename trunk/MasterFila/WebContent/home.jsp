@@ -93,12 +93,22 @@
 
 					<%
 					String categoria = (String) session.getAttribute("categoria_escolhida");
+					String cidade = (String) session.getAttribute("cidade");
 					List<Estabelecimento> lista;
-					if(categoria == null || categoria.equals("")){
+					
+					if(categoria == null && cidade == null){
 						lista = Fachada.getInstance().cadastroEmpresa().listar();
 					}
 					else{
-						lista = Fachada.getInstance().cadastroEmpresa().listarCategoria(categoria); 
+						if(categoria != null && cidade == null){
+							lista = Fachada.getInstance().cadastroEmpresa().listarCategoria(categoria); 
+						}
+						else if(categoria == null && cidade != null){
+							lista = Fachada.getInstance().cadastroEmpresa().listarCidade(cidade);
+						}
+						else{
+							lista = Fachada.getInstance().cadastroEmpresa().listarCidadeCategoria(cidade, categoria);
+						}
 					}
 					for(Estabelecimento estabelecimento : lista){
 					%>
