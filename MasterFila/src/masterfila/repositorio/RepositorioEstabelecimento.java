@@ -26,11 +26,15 @@ public class RepositorioEstabelecimento {
 	}
 	
 	public List<Estabelecimento> listar(){
-		return (List<Estabelecimento>) dao.criarQuery("FROM empresa WHERE status <> '" + Constants.INATIVO + "'");
+		return (List<Estabelecimento>) dao.criarQuery("FROM estabelecimento WHERE status <> '" + Constants.INATIVO + "'");
 	}
 	
 	public void remover(Estabelecimento del){
 		del.setStatus(Constants.INATIVO);
 		dao.atualizarObjeto(del);
+	}
+
+	public List<Estabelecimento> listarCategoria(String categoria) {
+		return (List<Estabelecimento>) dao.buscarPorLike("categoria", categoria, Estabelecimento.class);
 	}
 }

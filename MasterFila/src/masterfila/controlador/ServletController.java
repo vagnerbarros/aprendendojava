@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import masterfila.model.Acao;
 import masterfila.model.AcessarSistema;
+import masterfila.model.Cadastrar;
 import masterfila.model.Erro;
+import masterfila.model.EscolherCategoria;
 import masterfila.model.ListarEmpresa;
 import masterfila.model.Logar;
 
@@ -38,10 +40,13 @@ public class ServletController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
+		mapa.put("logar", new Logar());
+		mapa.put("cadastrar", new Cadastrar());
+		mapa.put("acessarSistema", new AcessarSistema());
+		mapa.put("categoria", new EscolherCategoria());
+		
 		mapa.put("erro", new Erro());
 		mapa.put("listarEmpresas", new ListarEmpresa());
-		mapa.put("acessarSistema", new AcessarSistema());
-		mapa.put("logar", new Logar());
 	}
 
 	/**

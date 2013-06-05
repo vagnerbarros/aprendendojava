@@ -34,29 +34,30 @@
 			
 			<h4>Cadastro de Usuário</h4>
 
-			<form action="cadastro_sucesso.jsp" class="form_cadastro_cliente" name="form_cadastro_cliente">
+			<form action="controlador" class="form_cadastro_cliente" name="form_cadastro_cliente">
+				<input type="hidden" name="acao" value="cadastrar"/>
 				
 				<label class="wh300"> <span>* Campos Obrigatórios</span> </label>
 				
 				<label class="wh300 rspace17"> Nome: <span>*</span></label>
 				<label class="wh150"> CPF: <span>*</span></label>
 				
-				<input type="text" id="txtNome" class="wh300" onKeyPress="return VerificaNomeProprio(event);" />
-				<input type="text" id="txtCpf" class="wh150"/>
+				<input type="text" id="txtNome" name="nome" class="wh300" onKeyPress="return VerificaNomeProprio(event);" />
+				<input type="text" id="txtCpf" name="cpf" class="wh150"/>
 				
 				<label class="wh300 rspace17"> Endereço: <span>*</span> <strong style="font-size: 12px; font-weight: normal;"> (Rua - Nº - Complemento - Cidade - UF) </strong> </label>
-				<input type="text" id="txtEndereco" class="wh475"/>
+				<input type="text" id="txtEndereco" name="endereco" class="wh475"/>
 								
 				<label class="wh227 rspace17"> Email: <span>*</span></label>
 				<label class="wh227 rspace17"> Login: <span>*</span></label>
 				
-				<input type="text" id="txtEmail" class="wh225"/>
-				<input type="text" id="txtLogin" class="wh225"/>
+				<input type="text" id="txtEmail" name="email" class="wh225"/>
+				<input type="text" id="txtLogin" name="login" class="wh225"/>
 				
 				<label class="wh227 rspace17">Senha: <span>*</span> </label>
 				<label class="wh227 rspace17">Confirmação de Senha: <span>*</span> </label>
 				
-				<input type="password" id="txtSenha" class="wh225"/>
+				<input type="password" name="senha" id="txtSenha" class="wh225"/>
 				<input type="password" id="txtConfirmsenha" class="wh225"/>
 				
 				<a href="javascript:validarCadastroUsuario()" class="submit">Concluir</a>

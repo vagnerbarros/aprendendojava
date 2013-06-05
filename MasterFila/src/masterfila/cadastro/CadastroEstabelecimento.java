@@ -29,4 +29,8 @@ public class CadastroEstabelecimento {
 	public List<Estabelecimento> listar(){
 		return rep.listar();
 	}
+
+	public List<Estabelecimento> listarCategoria(String categoria) {
+		return rep.listarCategoria(categoria);
+	}
 }

@@ -14,13 +14,13 @@
 				<div class="clr"></div>
 				
 				<form action="controlador" method="POST" class="form_login"> 
+					<input type="hidden" value="logar" name="acao"/>
 					
 					<label class="wh160">Login:</label>
 					<label class="wh160">Senha:</label>
 					<input type="text" name="login" class="wh150"/>
 					<input type="password" name="senha" class="wh150"/>
 					<input type="submit" value="Confirmar" />
-					<input type="hidden" value="logar" name="acao"/>
 					<a href="cadastro.jsp">Cadastre-se </a> <a>|</a>
 					<a href="esqueci_senha.jsp"> Esqueci a Senha</a>
 					

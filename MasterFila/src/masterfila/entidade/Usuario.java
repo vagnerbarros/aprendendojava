@@ -31,25 +31,25 @@ public class Usuario implements Entidade{
 	@Column(name = "senha", length = 50, nullable = false)
 	private String senha;
 	
-	@Column(name = "telefone", length = 20, nullable = false)
+	@Column(name = "telefone", length = 20, nullable = true)
 	private String telefone;
 	
 	@Column(name = "rua", length = 100, nullable = false)
 	private String rua;
 	
-	@Column(name = "numero", length = 10, nullable = false)
+	@Column(name = "numero", length = 10, nullable = true)
 	private String numero;
 	
-	@Column(name = "bairro", length = 50, nullable = false)
+	@Column(name = "bairro", length = 50, nullable = true)
 	private String bairro;
 	
-	@Column(name = "cidade", length = 30, nullable = false)
+	@Column(name = "cidade", length = 30, nullable = true)
 	private String cidade;
 	
-	@Column(name = "estado", length = 30, nullable = false)
+	@Column(name = "estado", length = 30, nullable = true)
 	private String estado;
 	
-	@Column(name = "cep", length = 15, nullable = false)
+	@Column(name = "cep", length = 15, nullable = true)
 	private String cep;
 	
 	@Column(name = "status", length = 10, nullable = false)
