@@ -202,3 +202,45 @@ h5{
 	top: 140px;
 	right: 5px;
 }
+
+.content_usuario_logado{
+	position: relative;
+	float:right;
+	background-color: white;
+	margin-top: 17px;
+	border-radius: 10px;
+	padding: 5px; 
+	text-align: right;
+	border: solid 1px #EDEDED;
+	box-shadow: 0 0 7px 7px #E6E7E8;
+}
+
+.content_usuario_logado strong{
+	font-size: 18px;
+}
+
+.content_usuario_logado a{
+	position: relative;
+	font-weight: normal;
+	text-decoration: none;
+	color: black;
+	text-shadow: -3px 3px 3px rgb(204, 204, 204);
+}
+
+.content_usuario_logado a:hover{
+	color: #0681B9;
+}
+
+.line_gray{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #E6E7E8;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+
+
+
