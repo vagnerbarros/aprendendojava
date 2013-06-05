@@ -29,9 +29,22 @@
 			<%
 			}
 			else{ %>
-				<h2>Bem Vindo <%=u.getNome() %></h2>
+				
+				<div class="content_usuario_logado">
+				
+				<strong>Bem Vindo!</strong>
+				
+				<br/>
+				
+				<span><%=u.getNome() %></span>
+				
+				<div class="line_gray"></div>
+				
+				<a href="#">Sair</a>
 				
 				<div class="clr"></div>
+								
+				</div>
 				
 			<% } %>
 		
