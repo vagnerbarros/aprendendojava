@@ -121,7 +121,7 @@
 							<br/>
 							<%=estabelecimento.getEndereco() %> 
 						</p>
-						<a class="bg_image_azul_padão" href="chamada_senha.jsp?id_fila=098987872">Visualizar</a>
+						<a class="bg_image_azul_padão" href="chamada_senha.jsp?id_fila=Normal">Visualizar</a>
 					</li>
 					
 					<%

@@ -23,17 +23,17 @@
 			<h4>Meu Perfil</h4>
 			
 			<strong>Nome:</strong>
-			<span>Plínio Manoel</span>
+			<span>${usuario.nome}</span>
 			
 			<br/>
 			
 			<strong>CPF:</strong>
-			<span>101.004.934-83</span>
+			<span>${usuario.cpf}</span>
 			
 			<br/>
 			
 			<strong>Email:</strong>
-			<span>ti.plinio@gmail.com</span>
+			<span>${usuario.bairro}</span>
 			
 			<br/>
 			

@@ -73,7 +73,7 @@
 		
 		<div class="blue_line"></div>
 		
-		<strong class="alert_vincular"> ATENÇÃO - Ao Inativar uma pessoa, ela poderá mais solicitar ficha pela internet ou aplicativo móvel para atendimento em sua empresa. </strong>
+		<strong class="alert_vincular"> ATENÇÃO - Ao Inativar uma pessoa, ela não poderá mais solicitar ficha pela internet ou aplicativo móvel para atendimento em sua empresa. </strong>
 		
 		<div id="dt_example">
 
