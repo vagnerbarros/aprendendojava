@@ -37,4 +37,12 @@ public class RepositorioEstabelecimento {
 	public List<Estabelecimento> listarCategoria(String categoria) {
 		return (List<Estabelecimento>) dao.buscarPorLike("categoria", categoria, Estabelecimento.class);
 	}
+
+	public List<Estabelecimento> listarCidade(String cidade) {
+		return (List<Estabelecimento>) dao.buscarPorLike("cidade", cidade, Estabelecimento.class);
+	}
+
+	public List<Estabelecimento> listarCidadeCategoria(String cidade, String categoria) {
+		return (List<Estabelecimento>) dao.buscarPorLikeIlimitado(new String [] {"cidade", "categoria"}, new String [] {cidade, categoria}, Estabelecimento.class);
+	}
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import masterfila.model.Acao;
 import masterfila.model.AcessarSistema;
 import masterfila.model.Cadastrar;
+import masterfila.model.Editar;
 import masterfila.model.Erro;
 import masterfila.model.EscolherCategoria;
 import masterfila.model.ListarEmpresa;
@@ -44,6 +45,7 @@ public class ServletController extends HttpServlet {
 		mapa.put("cadastrar", new Cadastrar());
 		mapa.put("acessarSistema", new AcessarSistema());
 		mapa.put("categoria", new EscolherCategoria());
+		mapa.put("editar", new Editar());
 		
 		mapa.put("erro", new Erro());
 		mapa.put("listarEmpresas", new ListarEmpresa());

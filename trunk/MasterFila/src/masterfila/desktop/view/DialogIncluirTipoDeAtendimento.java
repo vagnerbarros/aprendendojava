@@ -22,6 +22,7 @@ import masterfila.entidade.TipoFicha;
 import masterfila.exception.FilaExistenteException;
 import masterfila.exception.TipoAtendimentoExisteException;
 import masterfila.fachada.Fachada;
+import masterfila.util.GerenciadorArquivo;
 
 public class DialogIncluirTipoDeAtendimento extends JDialog implements ActionListener{
 
@@ -161,6 +162,7 @@ public class DialogIncluirTipoDeAtendimento extends JDialog implements ActionLis
 			fachada.cadastroTipoFicha().cadastrar(tipo);
 			limparCampos();
 			JOptionPane.showMessageDialog(this, "Tipo de Atendimento cadastrado com sucesso.");
+			GerenciadorArquivo.criarArquivo(tipo.getNome());
 		} catch (TipoAtendimentoExisteException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		} catch (FilaExistenteException e) {

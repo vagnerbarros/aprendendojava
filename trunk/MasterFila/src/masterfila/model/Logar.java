@@ -8,7 +8,6 @@ import masterfila.fachada.Fachada;
 
 public class Logar implements Acao{
 
-	@Override
 	public String executar(HttpServletRequest request, HttpServletResponse response) {
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");

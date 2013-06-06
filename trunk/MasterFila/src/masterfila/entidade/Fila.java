@@ -6,6 +6,7 @@ import java.util.List;
 
 import masterfila.exception.FichaInvalidaException;
 import masterfila.exception.FilaVaziaException;
+import masterfila.util.GerenciadorArquivo;
 
 public class Fila {
 
@@ -13,12 +14,14 @@ public class Fila {
 	private int indice;
 	private int proximo;
 	private TipoFicha tipo;
+	private GerenciadorArquivo gerenciadorArquivo;
 	
 	public Fila(TipoFicha tipo){
 		this.tipo = tipo;
 		proximo = 0;
 		indice = 0;
 		fichas = new ArrayList<Ficha>();
+		gerenciadorArquivo = new GerenciadorArquivo(tipo.getNome());
 	}
 	
 	public void setFichas(List<Ficha> fichas){

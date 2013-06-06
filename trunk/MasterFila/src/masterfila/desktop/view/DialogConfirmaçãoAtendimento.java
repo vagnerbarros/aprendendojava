@@ -26,6 +26,7 @@ import masterfila.entidade.Guiche;
 import masterfila.entidade.TipoFicha;
 import masterfila.exception.FilaVaziaException;
 import masterfila.fachada.Fachada;
+import masterfila.util.GerenciadorArquivo;
 import masterfila.util.Sessao;
 
 public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListener, WindowListener{
@@ -42,6 +43,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 	private Fila fila;
 	private Ficha ultimaFicha;
 	private ViewChamadaSenha viewChamada;
+	private GerenciadorArquivo gerenciador;
 	
 	public DialogConfirmaçãoAtendimento(Guiche guiche, TipoFicha tipoFicha){
 		this.addWindowListener(this);
@@ -54,6 +56,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		initComponents();
 		try {
 			viewChamada = new ViewChamadaSenha();
+			gerenciador = new GerenciadorArquivo(tipoFicha.getNome());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -206,6 +209,7 @@ public class DialogConfirmaçãoAtendimento extends JDialog implements ActionListe
 		
 		try {
 			ultimaFicha = fila.atenderProximo();
+			gerenciador.adicionar(ultimaFicha);
 			ultimaFicha.setAtendente(Sessao.getFuncionario());
 			ultimaFicha.setGuiche(guiche);
 			Fachada fachada = Fachada.getInstance();

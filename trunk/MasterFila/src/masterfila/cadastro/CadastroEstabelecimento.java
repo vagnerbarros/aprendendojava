@@ -33,4 +33,12 @@ public class CadastroEstabelecimento {
 	public List<Estabelecimento> listarCategoria(String categoria) {
 		return rep.listarCategoria(categoria);
 	}
+	
+	public List<Estabelecimento> listarCidade(String cidade) {
+		return rep.listarCidade(cidade);
+	}
+	
+	public List<Estabelecimento> listarCidadeCategoria(String cidade, String categoria) {
+		return rep.listarCidadeCategoria(cidade, categoria);
+	}
 }
